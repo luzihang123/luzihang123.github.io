@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6503358085145049",
+          enable_page_level_ads: true
+     });
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="01课程介绍——Python高级编程和异步IO并发编程为什么需要进阶Python高级工程师会面试什么我们只需要知道当前的Python知识就够了吗？语言本身的进阶知识优先于框架，大公司更注重语言本身的功底 如何进阶和大神一起阅读优秀源码、懂原理面试、多做项目 你是否遇到看不懂优秀库和框架的源码不知道如何才能进一步优化自己的代码asyncio、tornado 等异步框架背后的原理Python代码灵活背">
+<meta name="keywords" content="python,爬虫,AI,flask,django,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01课程介绍——Python高级编程和异步IO并发编程">
+<meta property="og:url" content="http://tech.luzihang.net/p/2ed8a5ab.html">
+<meta property="og:site_name" content="子航的博客">
+<meta property="og:description" content="01课程介绍——Python高级编程和异步IO并发编程为什么需要进阶Python高级工程师会面试什么我们只需要知道当前的Python知识就够了吗？语言本身的进阶知识优先于框架，大公司更注重语言本身的功底 如何进阶和大神一起阅读优秀源码、懂原理面试、多做项目 你是否遇到看不懂优秀库和框架的源码不知道如何才能进一步优化自己的代码asyncio、tornado 等异步框架背后的原理Python代码灵活背">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-24T10:08:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="01课程介绍——Python高级编程和异步IO并发编程">
+<meta name="twitter:description" content="01课程介绍——Python高级编程和异步IO并发编程为什么需要进阶Python高级工程师会面试什么我们只需要知道当前的Python知识就够了吗？语言本身的进阶知识优先于框架，大公司更注重语言本身的功底 如何进阶和大神一起阅读优秀源码、懂原理面试、多做项目 你是否遇到看不懂优秀库和框架的源码不知道如何才能进一步优化自己的代码asyncio、tornado 等异步框架背后的原理Python代码灵活背">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="子航的博客" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://tech.luzihang.net/p/2ed8a5ab">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>01课程介绍——Python高级编程和异步IO并发编程 | 子航的博客</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-80920851-3"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-80920851-3');
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">子航的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">与其临渊羡鱼，不如退而结网</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tech.luzihang.net/p/2ed8a5ab.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="子航 Clark">
+      <meta itemprop="description" content="记录点东西">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="子航的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">01课程介绍——Python高级编程和异步IO并发编程
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-10 23:21:08" itemprop="dateCreated datePublished" datetime="2019-06-10T23:21:08+08:00">2019-06-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-24 18:08:16" itemprop="dateModified" datetime="2019-12-24T18:08:16+08:00">2019-12-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/「笔记」/" itemprop="url" rel="index"><span itemprop="name">「笔记」</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+              
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/p/2ed8a5ab.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="/p/2ed8a5ab.html" itemprop="commentCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+      <!-- 文章顶部谷歌广告 -->
+
+      
+      
+
+      
+        <h1 id="01课程介绍——Python高级编程和异步IO并发编程"><a href="#01课程介绍——Python高级编程和异步IO并发编程" class="headerlink" title="01课程介绍——Python高级编程和异步IO并发编程"></a>01课程介绍——Python高级编程和异步IO并发编程</h1><h2 id="为什么需要进阶"><a href="#为什么需要进阶" class="headerlink" title="为什么需要进阶"></a>为什么需要进阶</h2><p>Python高级工程师会面试什么<br>我们只需要知道当前的Python知识就够了吗？<br>语言本身的进阶知识优先于框架，大公司更注重语言本身的功底</p>
+<h2 id="如何进阶"><a href="#如何进阶" class="headerlink" title="如何进阶"></a>如何进阶</h2><p>和大神一起<br><strong>阅读优秀源码、懂原理</strong><br>面试、多做项目</p>
+<h2 id="你是否遇到"><a href="#你是否遇到" class="headerlink" title="你是否遇到"></a>你是否遇到</h2><p>看不懂优秀库和框架的源码<br>不知道如何才能进一步优化自己的代码<br>asyncio、tornado 等异步框架背后的原理<br>Python代码灵活背后的设计原理<br>对生成器稀里糊涂<br>很多Python抛出的异常看不懂</p>
+<h2 id="课程概述"><a href="#课程概述" class="headerlink" title="课程概述"></a>课程概述</h2><p>目标：系统全面学习Python高级知识和并发编程<br>方法：功能-&gt;原理-&gt;应用案例<br>技术：面向对象、魔法方法、元类、生成器、多线程-&gt;协程</p>
+<h2 id="章节安排"><a href="#章节安排" class="headerlink" title="章节安排"></a>章节安排</h2><h3 id="01-课程介绍"><a href="#01-课程介绍" class="headerlink" title="01 课程介绍"></a>01 课程介绍</h3><h3 id="02-Python中一切皆对象"><a href="#02-Python中一切皆对象" class="headerlink" title="02 Python中一切皆对象"></a>02 Python中一切皆对象</h3><h3 id="03-魔法方法"><a href="#03-魔法方法" class="headerlink" title="03 魔法方法"></a>03 魔法方法</h3><h3 id="04-深入类和对象"><a href="#04-深入类和对象" class="headerlink" title="04 深入类和对象"></a>04 深入类和对象</h3><h3 id="05-自定义序列类"><a href="#05-自定义序列类" class="headerlink" title="05 自定义序列类"></a>05 自定义序列类</h3><h3 id="06-深入Python的set和dict"><a href="#06-深入Python的set和dict" class="headerlink" title="06 深入Python的set和dict"></a>06 深入Python的set和dict</h3><h3 id="07-对象引用、可变性和垃圾回收"><a href="#07-对象引用、可变性和垃圾回收" class="headerlink" title="07 对象引用、可变性和垃圾回收"></a>07 对象引用、可变性和垃圾回收</h3><h3 id="08-元类编程"><a href="#08-元类编程" class="headerlink" title="08 元类编程"></a>08 元类编程</h3><h3 id="09-迭代器和生成器"><a href="#09-迭代器和生成器" class="headerlink" title="09 迭代器和生成器"></a>09 迭代器和生成器</h3><h3 id="10-Python-socket编程"><a href="#10-Python-socket编程" class="headerlink" title="10 Python socket编程"></a>10 Python socket编程</h3><h3 id="11-多线程、多进程和线程池编程"><a href="#11-多线程、多进程和线程池编程" class="headerlink" title="11 多线程、多进程和线程池编程"></a>11 多线程、多进程和线程池编程</h3><h3 id="12、协程和异步IO"><a href="#12、协程和异步IO" class="headerlink" title="12、协程和异步IO"></a>12、协程和异步IO</h3><h3 id="13、asyncio并发编程"><a href="#13、asyncio并发编程" class="headerlink" title="13、asyncio并发编程"></a>13、asyncio并发编程</h3><h3 id="14、课程总结"><a href="#14、课程总结" class="headerlink" title="14、课程总结"></a>14、课程总结</h3><h2 id="课程安排"><a href="#课程安排" class="headerlink" title="课程安排"></a>课程安排</h2><h3 id="一切皆对象"><a href="#一切皆对象" class="headerlink" title="一切皆对象"></a>一切皆对象</h3><h3 id="魔法方法详解"><a href="#魔法方法详解" class="headerlink" title="魔法方法详解"></a>魔法方法详解</h3><h3 id="Python序列协议"><a href="#Python序列协议" class="headerlink" title="Python序列协议"></a>Python序列协议</h3><h3 id="深入dict和set"><a href="#深入dict和set" class="headerlink" title="深入dict和set"></a>深入dict和set</h3><h3 id="迭代器和生成器详解"><a href="#迭代器和生成器详解" class="headerlink" title="迭代器和生成器详解"></a>迭代器和生成器详解</h3><h3 id="socket编程详解"><a href="#socket编程详解" class="headerlink" title="socket编程详解"></a>socket编程详解</h3><h3 id="对象引用和可变性、垃圾回收"><a href="#对象引用和可变性、垃圾回收" class="headerlink" title="对象引用和可变性、垃圾回收"></a>对象引用和可变性、垃圾回收</h3><h3 id="元类编程"><a href="#元类编程" class="headerlink" title="元类编程"></a>元类编程</h3><h3 id="多线程（池）、多进程（池）"><a href="#多线程（池）、多进程（池）" class="headerlink" title="多线程（池）、多进程（池）"></a>多线程（池）、多进程（池）</h3><h3 id="异步io和协程"><a href="#异步io和协程" class="headerlink" title="异步io和协程"></a>异步io和协程</h3><h3 id="asyncio并发编程"><a href="#asyncio并发编程" class="headerlink" title="asyncio并发编程"></a>asyncio并发编程</h3><h2 id="课程安排-面向对象"><a href="#课程安排-面向对象" class="headerlink" title="课程安排-面向对象"></a>课程安排-面向对象</h2><h3 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h3><h3 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h3><h3 id="MRO属性查找算法和super函数"><a href="#MRO属性查找算法和super函数" class="headerlink" title="MRO属性查找算法和super函数"></a>MRO属性查找算法和super函数</h3><h3 id="静态方法、类方法、实例方法"><a href="#静态方法、类方法、实例方法" class="headerlink" title="静态方法、类方法、实例方法"></a>静态方法、类方法、实例方法</h3><h3 id="数据封装和私有属性"><a href="#数据封装和私有属性" class="headerlink" title="数据封装和私有属性"></a>数据封装和私有属性</h3><h3 id="对象的自省机制"><a href="#对象的自省机制" class="headerlink" title="对象的自省机制"></a>对象的自省机制</h3><h3 id="上下文管理器"><a href="#上下文管理器" class="headerlink" title="上下文管理器"></a>上下文管理器</h3><h3 id="contextlib实现上下文管理器"><a href="#contextlib实现上下文管理器" class="headerlink" title="contextlib实现上下文管理器"></a>contextlib实现上下文管理器</h3><h3 id="mixin继承模式的应用"><a href="#mixin继承模式的应用" class="headerlink" title="mixin继承模式的应用"></a>mixin继承模式的应用</h3><h2 id="课程安排-元类"><a href="#课程安排-元类" class="headerlink" title="课程安排-元类"></a>课程安排-元类</h2><h3 id="property动态属性"><a href="#property动态属性" class="headerlink" title="property动态属性"></a>property动态属性</h3><h3 id="getattr、getattribute的区别"><a href="#getattr、getattribute的区别" class="headerlink" title="getattr、getattribute的区别"></a><strong>getattr</strong>、<strong>getattribute</strong>的区别</h3><h3 id="属性描述符"><a href="#属性描述符" class="headerlink" title="属性描述符"></a>属性描述符</h3><h3 id="new和init"><a href="#new和init" class="headerlink" title="new和init"></a><strong>new</strong>和<strong>init</strong></h3><h3 id="元类实现orm"><a href="#元类实现orm" class="headerlink" title="元类实现orm"></a>元类实现orm</h3><h2 id="课程安排-多线程"><a href="#课程安排-多线程" class="headerlink" title="课程安排-多线程"></a>课程安排-多线程</h2><h3 id="GIL和多线程"><a href="#GIL和多线程" class="headerlink" title="GIL和多线程"></a>GIL和多线程</h3><h3 id="线程通信-共享变量、Queue"><a href="#线程通信-共享变量、Queue" class="headerlink" title="线程通信-共享变量、Queue"></a>线程通信-共享变量、Queue</h3><h3 id="线程同步-Lock、RLock、Condition、Semaphores"><a href="#线程同步-Lock、RLock、Condition、Semaphores" class="headerlink" title="线程同步-Lock、RLock、Condition、Semaphores"></a>线程同步-Lock、RLock、Condition、Semaphores</h3><h3 id="线程池和源码分析-ThreadPoolExecutor"><a href="#线程池和源码分析-ThreadPoolExecutor" class="headerlink" title="线程池和源码分析-ThreadPoolExecutor"></a>线程池和源码分析-ThreadPoolExecutor</h3><h3 id="多进程-multiprocessing"><a href="#多进程-multiprocessing" class="headerlink" title="多进程-multiprocessing"></a>多进程-multiprocessing</h3><h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><h2 id="课程安排-异步IO"><a href="#课程安排-异步IO" class="headerlink" title="课程安排-异步IO"></a>课程安排-异步IO</h2><h3 id="IO多路复用-select、poll、epoll"><a href="#IO多路复用-select、poll、epoll" class="headerlink" title="IO多路复用-select、poll、epoll"></a>IO多路复用-select、poll、epoll</h3><h3 id="select-回调-事件循环模式"><a href="#select-回调-事件循环模式" class="headerlink" title="select+回调+事件循环模式"></a>select+回调+事件循环模式</h3><h3 id="生成器进阶-send、close、throw和yield-from"><a href="#生成器进阶-send、close、throw和yield-from" class="headerlink" title="生成器进阶-send、close、throw和yield from"></a>生成器进阶-send、close、throw和yield from</h3><h3 id="async和await"><a href="#async和await" class="headerlink" title="async和await"></a>async和await</h3><h2 id="课程安排-asyncio"><a href="#课程安排-asyncio" class="headerlink" title="课程安排-asyncio"></a>课程安排-asyncio</h2><h3 id="Future和Task"><a href="#Future和Task" class="headerlink" title="Future和Task"></a>Future和Task</h3><h3 id="aiohttp实现高并发抓取url"><a href="#aiohttp实现高并发抓取url" class="headerlink" title="aiohttp实现高并发抓取url"></a>aiohttp实现高并发抓取url</h3><h3 id="asyncio-背后的selector"><a href="#asyncio-背后的selector" class="headerlink" title="asyncio 背后的selector"></a>asyncio 背后的selector</h3><h3 id="协程同步和通信"><a href="#协程同步和通信" class="headerlink" title="协程同步和通信"></a>协程同步和通信</h3><h3 id="ThreadPoolExecutor-asyncio"><a href="#ThreadPoolExecutor-asyncio" class="headerlink" title="ThreadPoolExecutor + asyncio"></a>ThreadPoolExecutor + asyncio</h3>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/qrcode_for_gh_7627ecd0697e_258.jpg" alt="子航 Clark wechat" style="width: 200px; max-width: 100%;">
+  <div>微信公众号"优雅的python"，欢迎订阅！</div>
+</div>
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>坚持分享，您的支持将鼓励我继续创作！</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/uploads/wechatpay.jpg" alt="子航 Clark 微信">
+        <p>微信</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/uploads/alipay.jpg" alt="子航 Clark 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/uploads/ethereum.jpg" alt="子航 Clark imToken">
+        <p>imToken</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div class="social_share">
+            
+            
+            
+              <div>
+                
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/p/c8c843a9.html" rel="next" title="scrapy-spalsh使用UA和IP代理">
+                <i class="fa fa-chevron-left"></i> scrapy-spalsh使用UA和IP代理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/p/c6651072.html" rel="prev" title="02Python中一切皆对象——Python高级编程和异步IO并发编程">
+                02Python中一切皆对象——Python高级编程和异步IO并发编程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="子航 Clark">
+            
+              <p class="site-author-name" itemprop="name">子航 Clark</p>
+              <div class="site-description motion-element" itemprop="description">记录点东西</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/luzihang123" title="GitHub &rarr; https://github.com/luzihang123" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:clark1203@foxmail.com" title="E-Mail &rarr; mailto:clark1203@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/lzh1203" title="Twitter &rarr; https://twitter.com/lzh1203" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.zhuozimu.com/" title="https://www.zhuozimu.com/" rel="noopener" target="_blank">卓子木</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://zhangslob.github.io" title="https://zhangslob.github.io" rel="noopener" target="_blank">小歪的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01课程介绍——Python高级编程和异步IO并发编程"><span class="nav-number">1.</span> <span class="nav-text">01课程介绍——Python高级编程和异步IO并发编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要进阶"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何进阶"><span class="nav-number">1.2.</span> <span class="nav-text">如何进阶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你是否遇到"><span class="nav-number">1.3.</span> <span class="nav-text">你是否遇到</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程概述"><span class="nav-number">1.4.</span> <span class="nav-text">课程概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#章节安排"><span class="nav-number">1.5.</span> <span class="nav-text">章节安排</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-课程介绍"><span class="nav-number">1.5.1.</span> <span class="nav-text">01 课程介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-Python中一切皆对象"><span class="nav-number">1.5.2.</span> <span class="nav-text">02 Python中一切皆对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-魔法方法"><span class="nav-number">1.5.3.</span> <span class="nav-text">03 魔法方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-深入类和对象"><span class="nav-number">1.5.4.</span> <span class="nav-text">04 深入类和对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-自定义序列类"><span class="nav-number">1.5.5.</span> <span class="nav-text">05 自定义序列类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-深入Python的set和dict"><span class="nav-number">1.5.6.</span> <span class="nav-text">06 深入Python的set和dict</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-对象引用、可变性和垃圾回收"><span class="nav-number">1.5.7.</span> <span class="nav-text">07 对象引用、可变性和垃圾回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-元类编程"><span class="nav-number">1.5.8.</span> <span class="nav-text">08 元类编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-迭代器和生成器"><span class="nav-number">1.5.9.</span> <span class="nav-text">09 迭代器和生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-Python-socket编程"><span class="nav-number">1.5.10.</span> <span class="nav-text">10 Python socket编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-多线程、多进程和线程池编程"><span class="nav-number">1.5.11.</span> <span class="nav-text">11 多线程、多进程和线程池编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、协程和异步IO"><span class="nav-number">1.5.12.</span> <span class="nav-text">12、协程和异步IO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13、asyncio并发编程"><span class="nav-number">1.5.13.</span> <span class="nav-text">13、asyncio并发编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14、课程总结"><span class="nav-number">1.5.14.</span> <span class="nav-text">14、课程总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程安排"><span class="nav-number">1.6.</span> <span class="nav-text">课程安排</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一切皆对象"><span class="nav-number">1.6.1.</span> <span class="nav-text">一切皆对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#魔法方法详解"><span class="nav-number">1.6.2.</span> <span class="nav-text">魔法方法详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python序列协议"><span class="nav-number">1.6.3.</span> <span class="nav-text">Python序列协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入dict和set"><span class="nav-number">1.6.4.</span> <span class="nav-text">深入dict和set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器和生成器详解"><span class="nav-number">1.6.5.</span> <span class="nav-text">迭代器和生成器详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket编程详解"><span class="nav-number">1.6.6.</span> <span class="nav-text">socket编程详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象引用和可变性、垃圾回收"><span class="nav-number">1.6.7.</span> <span class="nav-text">对象引用和可变性、垃圾回收</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元类编程"><span class="nav-number">1.6.8.</span> <span class="nav-text">元类编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程（池）、多进程（池）"><span class="nav-number">1.6.9.</span> <span class="nav-text">多线程（池）、多进程（池）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步io和协程"><span class="nav-number">1.6.10.</span> <span class="nav-text">异步io和协程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asyncio并发编程"><span class="nav-number">1.6.11.</span> <span class="nav-text">asyncio并发编程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程安排-面向对象"><span class="nav-number">1.7.</span> <span class="nav-text">课程安排-面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#鸭子类型"><span class="nav-number">1.7.1.</span> <span class="nav-text">鸭子类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象基类"><span class="nav-number">1.7.2.</span> <span class="nav-text">抽象基类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRO属性查找算法和super函数"><span class="nav-number">1.7.3.</span> <span class="nav-text">MRO属性查找算法和super函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态方法、类方法、实例方法"><span class="nav-number">1.7.4.</span> <span class="nav-text">静态方法、类方法、实例方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据封装和私有属性"><span class="nav-number">1.7.5.</span> <span class="nav-text">数据封装和私有属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的自省机制"><span class="nav-number">1.7.6.</span> <span class="nav-text">对象的自省机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上下文管理器"><span class="nav-number">1.7.7.</span> <span class="nav-text">上下文管理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#contextlib实现上下文管理器"><span class="nav-number">1.7.8.</span> <span class="nav-text">contextlib实现上下文管理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mixin继承模式的应用"><span class="nav-number">1.7.9.</span> <span class="nav-text">mixin继承模式的应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程安排-元类"><span class="nav-number">1.8.</span> <span class="nav-text">课程安排-元类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#property动态属性"><span class="nav-number">1.8.1.</span> <span class="nav-text">property动态属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getattr、getattribute的区别"><span class="nav-number">1.8.2.</span> <span class="nav-text">getattr、getattribute的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性描述符"><span class="nav-number">1.8.3.</span> <span class="nav-text">属性描述符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new和init"><span class="nav-number">1.8.4.</span> <span class="nav-text">new和init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元类实现orm"><span class="nav-number">1.8.5.</span> <span class="nav-text">元类实现orm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程安排-多线程"><span class="nav-number">1.9.</span> <span class="nav-text">课程安排-多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GIL和多线程"><span class="nav-number">1.9.1.</span> <span class="nav-text">GIL和多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程通信-共享变量、Queue"><span class="nav-number">1.9.2.</span> <span class="nav-text">线程通信-共享变量、Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程同步-Lock、RLock、Condition、Semaphores"><span class="nav-number">1.9.3.</span> <span class="nav-text">线程同步-Lock、RLock、Condition、Semaphores</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池和源码分析-ThreadPoolExecutor"><span class="nav-number">1.9.4.</span> <span class="nav-text">线程池和源码分析-ThreadPoolExecutor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程-multiprocessing"><span class="nav-number">1.9.5.</span> <span class="nav-text">多进程-multiprocessing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程间通信"><span class="nav-number">1.9.6.</span> <span class="nav-text">进程间通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程安排-异步IO"><span class="nav-number">1.10.</span> <span class="nav-text">课程安排-异步IO</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IO多路复用-select、poll、epoll"><span class="nav-number">1.10.1.</span> <span class="nav-text">IO多路复用-select、poll、epoll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select-回调-事件循环模式"><span class="nav-number">1.10.2.</span> <span class="nav-text">select+回调+事件循环模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成器进阶-send、close、throw和yield-from"><span class="nav-number">1.10.3.</span> <span class="nav-text">生成器进阶-send、close、throw和yield from</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#async和await"><span class="nav-number">1.10.4.</span> <span class="nav-text">async和await</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课程安排-asyncio"><span class="nav-number">1.11.</span> <span class="nav-text">课程安排-asyncio</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Future和Task"><span class="nav-number">1.11.1.</span> <span class="nav-text">Future和Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aiohttp实现高并发抓取url"><span class="nav-number">1.11.2.</span> <span class="nav-text">aiohttp实现高并发抓取url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asyncio-背后的selector"><span class="nav-number">1.11.3.</span> <span class="nav-text">asyncio 背后的selector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协程同步和通信"><span class="nav-number">1.11.4.</span> <span class="nav-text">协程同步和通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadPoolExecutor-asyncio"><span class="nav-number">1.11.5.</span> <span class="nav-text">ThreadPoolExecutor + asyncio</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">皖ICP备15012433号-4 </a>&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">子航 Clark</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script>
+  (function() {
+    var appid = 'cyuBrgE9W';
+    var conf = 'ae474b7fff009417ecbd26aeb43dacf7';
+    var width = window.innerWidth || document.documentElement.clientWidth;
+    if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+    }
+    else {
+      var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});
+    }
+  })();
+  </script>
+  <script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
