@@ -104,23 +104,18 @@
 
 
 
-  <meta name="description" content="生产环境CentOs7安装docker记实记录下，下次直接C、V使用 前置检查12345[root@web-95-61 /]# cat /etc/redhat-release                                                                                              CentOS Linux releas">
+  <meta name="description" content="场景有些场景，为了方便、高效，需要脱离scrapy框架使用spalsh 配置代理：隧道代理为佳 在宿主机上找个位置，新建文件/root/splash/proxy-files/cip.ini 注意：区别于官方文档，ini应该为小写1234567891011121314151617181920212223[proxy]; requiredhost=你的配置port=你的配置; optional, de">
 <meta name="keywords" content="python,爬虫,AI,flask,django,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生产环境CentOs7安装docker记实">
-<meta property="og:url" content="http://tech.luzihang.net/p/ad3d805f.html">
+<meta property="og:title" content="spalsh，单独使用（不使用scrapy框架），如何设置Proxy IP ">
+<meta property="og:url" content="http://tech.luzihang.net/p/79c3476.html">
 <meta property="og:site_name" content="子航的博客">
-<meta property="og:description" content="生产环境CentOs7安装docker记实记录下，下次直接C、V使用 前置检查12345[root@web-95-61 /]# cat /etc/redhat-release                                                                                              CentOS Linux releas">
+<meta property="og:description" content="场景有些场景，为了方便、高效，需要脱离scrapy框架使用spalsh 配置代理：隧道代理为佳 在宿主机上找个位置，新建文件/root/splash/proxy-files/cip.ini 注意：区别于官方文档，ini应该为小写1234567891011121314151617181920212223[proxy]; requiredhost=你的配置port=你的配置; optional, de">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cdn.luzihang.net/15633371423726.jpg">
-<meta property="og:image" content="http://cdn.luzihang.net/15633373557446.jpg">
-<meta property="og:image" content="http://cdn.luzihang.net/15633375189746.jpg">
-<meta property="og:image" content="http://cdn.luzihang.net/15633377852073.jpg">
-<meta property="og:updated_time" content="2019-12-24T10:08:16.000Z">
+<meta property="og:updated_time" content="2022-10-13T05:38:51.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生产环境CentOs7安装docker记实">
-<meta name="twitter:description" content="生产环境CentOs7安装docker记实记录下，下次直接C、V使用 前置检查12345[root@web-95-61 /]# cat /etc/redhat-release                                                                                              CentOS Linux releas">
-<meta name="twitter:image" content="http://cdn.luzihang.net/15633371423726.jpg">
+<meta name="twitter:title" content="spalsh，单独使用（不使用scrapy框架），如何设置Proxy IP ">
+<meta name="twitter:description" content="场景有些场景，为了方便、高效，需要脱离scrapy框架使用spalsh 配置代理：隧道代理为佳 在宿主机上找个位置，新建文件/root/splash/proxy-files/cip.ini 注意：区别于官方文档，ini应该为小写1234567891011121314151617181920212223[proxy]; requiredhost=你的配置port=你的配置; optional, de">
 
 
 
@@ -130,7 +125,7 @@
 
   
   
-  <link rel="canonical" href="http://tech.luzihang.net/p/ad3d805f">
+  <link rel="canonical" href="http://tech.luzihang.net/p/79c3476">
 
 
 
@@ -140,7 +135,7 @@
   };
 </script>
 
-  <title>生产环境CentOs7安装docker记实 | 子航的博客</title>
+  <title>spalsh，单独使用（不使用scrapy框架），如何设置Proxy IP  | 子航的博客</title>
   
 
 
@@ -417,7 +412,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tech.luzihang.net/p/ad3d805f.html">
+    <link itemprop="mainEntityOfPage" href="http://tech.luzihang.net/p/79c3476.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="子航 Clark">
@@ -434,7 +429,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">生产环境CentOs7安装docker记实
+          <h1 class="post-title" itemprop="name headline">spalsh，单独使用（不使用scrapy框架），如何设置Proxy IP 
 
               
             
@@ -460,24 +455,12 @@
                 
               
 
-              <time title="创建时间：2018-07-17 12:35:17" itemprop="dateCreated datePublished" datetime="2018-07-17T12:35:17+08:00">2018-07-17</time>
+              <time title="创建时间：2022-10-13 13:36:37 / 修改时间：13:38:51" itemprop="dateCreated datePublished" datetime="2022-10-13T13:36:37+08:00">2022-10-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-12-24 18:08:16" itemprop="dateModified" datetime="2019-12-24T18:08:16+08:00">2019-12-24</time>
               
             
           </span>
@@ -514,8 +497,8 @@
             
               
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/p/ad3d805f.html#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="/p/ad3d805f.html" itemprop="commentCount"></span>
+                <a href="/p/79c3476.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="/p/79c3476.html" itemprop="commentCount"></span>
                 </a>
               
             
@@ -544,32 +527,22 @@
       
 
       
-        <h1 id="生产环境CentOs7安装docker记实"><a href="#生产环境CentOs7安装docker记实" class="headerlink" title="生产环境CentOs7安装docker记实"></a>生产环境CentOs7安装docker记实</h1><p>记录下，下次直接C、V使用</p>
-<h2 id="前置检查"><a href="#前置检查" class="headerlink" title="前置检查"></a>前置检查</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@web-95-61 /]# cat /etc/redhat-release                                                                                              </span><br><span class="line">CentOS Linux release 7.6.1810 (Core)                                                                                                     </span><br><span class="line">[root@web-95-61 /]# uname -a                                                                                                             </span><br><span class="line">Linux web-95-61 3.10.0-862.el7.x86_64 #1 SMP Fri Apr 20 16:44:24 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux                                 </span><br><span class="line">[root@web-95-61 /]#</span><br></pre></td></tr></table></figure>
-<h2 id="配置国内yum源"><a href="#配置国内yum源" class="headerlink" title="配置国内yum源"></a>配置国内yum源</h2><p>参考：<br><a href="https://blog.csdn.net/inslow/article/details/54177191" target="_blank" rel="noopener">https://blog.csdn.net/inslow/article/details/54177191</a><br><a href="https://yeasy.gitbooks.io/docker_practice/install/centos.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/install/centos.html</a></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[admin@web-95-61 ~]$ su                                                                                                                  </span><br><span class="line">Password:                 </span><br><span class="line">[root@web-95-61 /]# cd /etc/yum.repos.d/                                                                                                 </span><br><span class="line">[root@web-95-61 yum.repos.d]# ls                                                                                                         </span><br><span class="line">baofoo-centos-7.repo                                                                                                                     </span><br><span class="line">[root@web-95-61 yum.repos.d]#  wget http://mirrors.163.com/.help/CentOS7-Base-163.repo</span><br><span class="line">[root@web-95-61 yum.repos.d]# yum makecache</span><br><span class="line">[root@web-95-61 yum.repos.d]# yum -y update</span><br></pre></td></tr></table></figure>
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><p>参考：<br><a href="https://qizhanming.com/blog/2019/01/25/how-to-install-docker-ce-on-centos-7" target="_blank" rel="noopener">https://qizhanming.com/blog/2019/01/25/how-to-install-docker-ce-on-centos-7</a><br><a href="https://yeasy.gitbooks.io/docker_practice/install/centos.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/install/centos.html</a></p>
-<h3 id="卸载旧版本"><a href="#卸载旧版本" class="headerlink" title="卸载旧版本"></a>卸载旧版本</h3><p>旧版本的 Docker 被叫做 docker 或 docker-engine，如果您安装了旧版本的 Docker ，您需要卸载掉它。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure></p>
-<p>旧版本的内容在 /var/lib/docker 下，目录中的镜像(images), 容器(containers), 存储卷(volumes), 和 网络配置（networks）都可以保留。</p>
-<p>Docker CE 包，目前的包名为 docker-ce</p>
-<h3 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h3><p>为了方便添加软件源，支持 devicemapper 存储类型，安装如下软件包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum update</span><br><span class="line"><span class="meta">$</span> sudo yum install -y yum-utils \</span><br><span class="line">  device-mapper-persistent-data \</span><br><span class="line">  lvm2</span><br></pre></td></tr></table></figure></p>
-<p>添加 yum 软件源<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 官方源</span><br><span class="line"><span class="meta">#</span> $ sudo yum-config-manager \</span><br><span class="line"><span class="meta">#</span>     --add-repo \</span><br><span class="line"><span class="meta">#</span>     https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure></p>
-<p>(可选)如果需要测试版本的 Docker CE 请使用以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum-config-manager --enable docker-ce-test</span><br></pre></td></tr></table></figure></p>
-<p>如果需要每日构建版本的 Docker CE 请使用以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum-config-manager --enable docker-ce-nightly</span><br></pre></td></tr></table></figure></p>
-<h3 id="安装-Docker-CE"><a href="#安装-Docker-CE" class="headerlink" title="安装 Docker CE"></a>安装 Docker CE</h3><p>更新一下 yum 软件源的缓存，并安装 Docker。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo yum makecache fast</span><br><span class="line"><span class="meta">$</span> sudo yum update</span><br><span class="line"><span class="meta">$</span> sudo yum install docker-ce</span><br></pre></td></tr></table></figure></p>
-<p>至此，Docker 已经安装完成了，Docker 服务是没有启动的，操作系统里的 docker 组被创建，但是没有用户在这个组里。<br>注意:<br>默认的 docker 组是没有用户的（也就是说需要使用 sudo 才能使用 docker 命令）。<br>您可以将用户添加到 docker 组中（此用户就可以直接使用 docker 命令了）。<br>（可选）加入 docker 用户组命令<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo usermod -aG docker USER_NAME</span><br></pre></td></tr></table></figure></p>
-<p>用户更新组信息后，重新登录系统即可生效。</p>
-<h3 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h3><p>如果想添加到开机启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable docker</span><br></pre></td></tr></table></figure></p>
-<p>启动 docker 服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure></p>
-<h3 id="验证安装"><a href="#验证安装" class="headerlink" title="验证安装"></a>验证安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo docker run hello-world</span><br></pre></td></tr></table></figure>
-<h2 id="使用rancker管理，成为主机"><a href="#使用rancker管理，成为主机" class="headerlink" title="使用rancker管理，成为主机"></a>使用rancker管理，成为主机</h2><p>点击添加主机:<br><img src="http://cdn.luzihang.net/15633371423726.jpg" alt></p>
-<p>复制<br><img src="http://cdn.luzihang.net/15633373557446.jpg" alt></p>
-<p>新机器：<br><img src="http://cdn.luzihang.net/15633375189746.jpg" alt></p>
-<p>总图:<br><img src="http://cdn.luzihang.net/15633377852073.jpg" alt></p>
-<h2 id="优化：Linux永久关闭swap"><a href="#优化：Linux永久关闭swap" class="headerlink" title="优化：Linux永久关闭swap"></a>优化：Linux永久关闭swap</h2><blockquote>
-<p>什么是swap:<br><a href="https://www.cnblogs.com/kerrycode/p/5246383.html" target="_blank" rel="noopener">https://www.cnblogs.com/kerrycode/p/5246383.html</a><br>Linux内核为了提高读写效率与速度，会将文件在内存中进行缓存，这部分内存就是Cache Memory(缓存内存)。即使你的程序运行结束后，Cache Memory也不会自动释放。这就会导致你在Linux系统中程序频繁读写文件后，你会发现可用物理内存变少。当系统的物理内存不够用的时候，就需要将物理内存中的一部分空间释放出来，以供当前运行的程序使用。那些被释放的空间可能来自一些很长时间没有什么操作的程序，这些被释放的空间被临时保存到Swap空间中，等到那些程序要运行时，再从Swap分区中恢复保存的数据到内存中。这样，系统总是在物理内存不够时，才进行Swap交换。</p>
-</blockquote>
-<p><strong>使用了docker 最好关闭swap，内存会超分，而且性能会很差。</strong></p>
+        <h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>有些场景，为了方便、高效，需要脱离scrapy框架使用spalsh</p>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>代理：隧道代理为佳</p>
+<p>在宿主机上找个位置，新建文件<code>/root/splash/proxy-files/cip.ini</code> 注意：区别于官方文档，<code>ini</code>应该为小写<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[proxy]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; required</span></span><br><span class="line"><span class="attr">host</span>=你的配置</span><br><span class="line"><span class="attr">port</span>=你的配置</span><br><span class="line"></span><br><span class="line"><span class="comment">; optional, default is no auth</span></span><br><span class="line"><span class="attr">username</span>=你的配置</span><br><span class="line"><span class="attr">password</span>=你的配置</span><br><span class="line"></span><br><span class="line"><span class="comment">; optional, default is HTTP. Allowed values are HTTP and SOCKS5</span></span><br><span class="line"><span class="attr">type</span>=HTTP</span><br><span class="line"></span><br><span class="line"><span class="section">[rules]</span></span><br><span class="line"><span class="comment">; optional, default ".*"</span></span><br><span class="line"><span class="attr">whitelist</span>=</span><br><span class="line">    .*cip.cc.*</span><br><span class="line"></span><br><span class="line"><span class="comment">; optional, default is no blacklist</span></span><br><span class="line"><span class="attr">blacklist</span>=</span><br><span class="line">    .*.js.*</span><br><span class="line">    .*.css.*</span><br><span class="line">    .*.png</span><br></pre></td></tr></table></figure></p>
+<h1 id="docker启动spalsh"><a href="#docker启动spalsh" class="headerlink" title="docker启动spalsh"></a>docker启动spalsh</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@host proxy-files]# docker run -p 8050:8050 -v /root/splash/proxy-files:/etc/splash/proxy-profiles scrapinghub/splash</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 后台启动</span><br><span class="line">docker run -d -p 8050:8050 -v /root/splash/proxy-files:/etc/splash/proxy-profiles scrapinghub/splash –restart=always</span><br></pre></td></tr></table></figure>
+<p>启动后日志：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">2022-10-13 04:22:24+0000 [-] Log opened.</span><br><span class="line">2022-10-13 04:22:24.608906 [-] Xvfb is started: ['Xvfb', ':322410884', '-screen', '0', '1024x768x24', '-nolisten', 'tcp']</span><br><span class="line">QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-splash'</span><br><span class="line">2022-10-13 04:22:24.718768 [-] Splash version: 3.5</span><br><span class="line">2022-10-13 04:22:24.774528 [-] Qt 5.14.1, PyQt 5.14.2, WebKit 602.1, Chromium 77.0.3865.129, sip 4.19.22, Twisted 19.7.0, Lua 5.2</span><br><span class="line">2022-10-13 04:22:24.774753 [-] Python 3.6.9 (default, Jul 17 2020, 12:50:27) [GCC 8.4.0]</span><br><span class="line">2022-10-13 04:22:24.774878 [-] Open files limit: 1048576</span><br><span class="line">2022-10-13 04:22:24.774946 [-] Can't bump open files limit</span><br><span class="line">2022-10-13 04:22:24.806401 [-] proxy profiles support is enabled, proxy profiles path: /etc/splash/proxy-profiles</span><br><span class="line">2022-10-13 04:22:24.806578 [-] memory cache: enabled, private mode: enabled, js cross-domain access: disabled</span><br><span class="line">2022-10-13 04:22:24.969678 [-] verbosity=1, slots=20, argument_cache_max_entries=500, max-timeout=90.0</span><br><span class="line">2022-10-13 04:22:24.970001 [-] Web UI: enabled, Lua: enabled (sandbox: enabled), Webkit: enabled, Chromium: enabled</span><br><span class="line">2022-10-13 04:22:24.970452 [-] Site starting on 8050</span><br><span class="line">2022-10-13 04:22:24.970553 [-] Starting factory &lt;twisted.web.server.Site object at 0x7f729c0f4550&gt;</span><br><span class="line">2022-10-13 04:22:24.970848 [-] Server listening on http://0.0.0.0:8050</span><br></pre></td></tr></table></figure></p>
+<p>其中 <code>2022-10-13 04:22:24.806401 [-] proxy profiles support is enabled, proxy profiles path: /etc/splash/proxy-profiles</code>标识代理生效</p>
+<h1 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h1><p>访问cip.cc，查看此时的ip<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 'http://10.0.19.90:8050/render.html?url=http://cip.cc&amp;proxy=cip'</span><br></pre></td></tr></table></figure></p>
+<p>返回结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre style=&quot;word-wrap: break-word; white-space: pre-wrap;&quot;&gt;Too Many Request</span><br><span class="line">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;%</span><br><span class="line">➜  ~ curl &apos;http://10.0.19.90:8050/render.html?url=http://cip.cc&amp;proxy=cip&apos;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot; &quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;head&gt;</span><br><span class="line">		&lt;title&gt;IP查询 - 查IP(www.cip.cc)&lt;/title&gt;</span><br><span class="line">		&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</span><br><span class="line">		&lt;meta name=&quot;description&quot; content=&quot;查IP(www.cip.cc)网站, 提供免费的IP查询服务,命令行查询IP, 并且支持&apos;PC网站, 手机网站, 命令行(Windows/UNIX/Linux)&apos; 三大平台, 是个多平台的IP查询网站, 更新即使, 数据准确是我们的目标&quot;&gt;</span><br><span class="line">		&lt;meta name=&quot;keywords&quot; content=&quot;IP, 查IP, IP查询&quot;&gt;</span><br><span class="line">		&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">		&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;&gt;</span><br><span class="line">		&lt;link rel=&quot;icon&quot; href=&quot;data:;base64,=&quot;&gt;</span><br><span class="line">		 &lt;link href=&quot;//static.cip.cc/static/styles.min.css?v=15&quot; rel=&quot;stylesheet&quot;&gt;</span><br><span class="line">		 &lt;script src=&quot;https://hm.baidu.com/hm.js?6c34da399cbcfbb71d86c72215942759&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;//static.cip.cc/static/js.min.js?v=6&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;wrapper&quot;&gt;</span><br><span class="line">	&lt;div class=&quot;page&quot;&gt;</span><br><span class="line">		&lt;div class=&quot;logo&quot;&gt;</span><br><span class="line">			&lt;h1&gt;</span><br><span class="line">				&lt;strong&gt;多平台的命令行IP查询&lt;/strong&gt;</span><br><span class="line">				&lt;a href=&quot;//www.cip.cc/&quot; title=&quot;手机, 命令行IP查询&quot;&gt;&lt;img src=&quot;//static.cip.cc/static/img/logo.png?v=2&quot; alt=&quot;手机, 命令行IP查询&quot;&gt;&lt;/a&gt;</span><br><span class="line">			&lt;/h1&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;search&quot;&gt;</span><br><span class="line">			&lt;form action=&quot;/&quot; onsubmit=&quot;return query();&quot;&gt;</span><br><span class="line">				&lt;table&gt;</span><br><span class="line">					&lt;tbody&gt;</span><br><span class="line">					&lt;tr&gt;</span><br><span class="line">						&lt;td style=&quot; width: 75%; &quot;&gt;</span><br><span class="line">					&lt;input id=&quot;data-input&quot; placeholder=&quot;请输入要查询的 IP 地址&quot; size=&quot;26&quot; type=&quot;text&quot;&gt;</span><br><span class="line">						&lt;/td&gt;</span><br><span class="line">						&lt;td&gt;</span><br><span class="line">					&lt;input id=&quot;data-submit&quot; type=&quot;submit&quot; class=&quot;kq-button&quot; value=&quot;查询&quot;&gt;</span><br><span class="line">						&lt;/td&gt;</span><br><span class="line">					&lt;/tr&gt;</span><br><span class="line">					&lt;/tbody&gt;</span><br><span class="line">				&lt;/table&gt;</span><br><span class="line">			&lt;/form&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;data kq-well&quot;&gt;</span><br><span class="line">				&lt;pre&gt;IP	: 182.87.15.14</span><br><span class="line">地址	: 中国  江西  鹰潭</span><br><span class="line">运营商	: 电信</span><br><span class="line"></span><br><span class="line">数据二	: 江西省鹰潭市 | 电信</span><br><span class="line"></span><br><span class="line">数据三	: 中国江西省鹰潭市 | 电信</span><br><span class="line"></span><br><span class="line">URL	: http://www.cip.cc/182.87.15.14</span><br><span class="line">&lt;/pre&gt;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，ip已经更换</p>
+<h1 id="Python-requests-demo"><a href="#Python-requests-demo" class="headerlink" title="Python requests demo"></a>Python requests demo</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">target_url = <span class="string">"http://cip.cc"</span></span><br><span class="line">url = <span class="string">f'http://<span class="subst">&#123;你的服务器地址&#125;</span>:8050/render.html?url=<span class="subst">&#123;target_url&#125;</span>&amp;proxy=cip'</span></span><br><span class="line"></span><br><span class="line">response = requests.get(url)</span><br><span class="line">print(response.text)</span><br></pre></td></tr></table></figure>
+<p>一个需求案例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">import requests</span><br><span class="line">from concurrent.futures import ThreadPoolExecutor</span><br><span class="line">from retrying import retry</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@retry(stop_max_attempt_number=3)</span><br><span class="line">def req_taobao():</span><br><span class="line">    target_url = &quot;https://shop551707528.taobao.com/search.htm?search=y&amp;orderType=hotsell_desc&amp;&amp;pageNo=1&quot;</span><br><span class="line">    url = f&apos;http://10.0.19.90:8050/render.html?url=&#123;target_url&#125;&amp;proxy=taobao&amp;wait=5&apos;</span><br><span class="line"></span><br><span class="line">    response = requests.get(url, timeout=5)</span><br><span class="line">    print(response.text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;&quot;&quot;开始爬虫&quot;&quot;&quot;</span><br><span class="line">s_time = time.time()</span><br><span class="line">executor = ThreadPoolExecutor(5)</span><br><span class="line">for i in range(10):</span><br><span class="line">    executor.submit(req_taobao)</span><br><span class="line">executor.shutdown()</span><br><span class="line">print(time.time() - s_time)</span><br></pre></td></tr></table></figure></p>
+<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><ul>
+<li><a href="https://splash.readthedocs.io/en/stable/api.html#render-html" target="_blank" rel="noopener">https://splash.readthedocs.io/en/stable/api.html#render-html</a></li>
+<li><a href="https://splash.readthedocs.io/en/stable/api.html#proxy-profiles" target="_blank" rel="noopener">https://splash.readthedocs.io/en/stable/api.html#proxy-profiles</a></li>
+<li><a href="https://splash.readthedocs.io/en/stable/install.html#docker-folder-sharing" target="_blank" rel="noopener">https://splash.readthedocs.io/en/stable/install.html#docker-folder-sharing</a></li>
+</ul>
 
       
     </div>
@@ -703,15 +676,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/p/9202ce96.html" rel="next" title="selenium 使用代理的方法汇总">
+                <i class="fa fa-chevron-left"></i> selenium 使用代理的方法汇总
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/p/408fe7ca.html" rel="prev" title="在Centos7安装python3、配置zsh、虚拟环境">
-                在Centos7安装python3、配置zsh、虚拟环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -927,7 +900,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生产环境CentOs7安装docker记实"><span class="nav-number">1.</span> <span class="nav-text">生产环境CentOs7安装docker记实</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前置检查"><span class="nav-number">1.1.</span> <span class="nav-text">前置检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置国内yum源"><span class="nav-number">1.2.</span> <span class="nav-text">配置国内yum源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装docker"><span class="nav-number">1.3.</span> <span class="nav-text">安装docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载旧版本"><span class="nav-number">1.3.1.</span> <span class="nav-text">卸载旧版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装准备"><span class="nav-number">1.3.2.</span> <span class="nav-text">安装准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Docker-CE"><span class="nav-number">1.3.3.</span> <span class="nav-text">安装 Docker CE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动-Docker"><span class="nav-number">1.3.4.</span> <span class="nav-text">启动 Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证安装"><span class="nav-number">1.3.5.</span> <span class="nav-text">验证安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用rancker管理，成为主机"><span class="nav-number">1.4.</span> <span class="nav-text">使用rancker管理，成为主机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化：Linux永久关闭swap"><span class="nav-number">1.5.</span> <span class="nav-text">优化：Linux永久关闭swap</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker启动spalsh"><span class="nav-number">3.</span> <span class="nav-text">docker启动spalsh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用："><span class="nav-number">4.</span> <span class="nav-text">使用：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-requests-demo"><span class="nav-number">5.</span> <span class="nav-text">Python requests demo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关文档"><span class="nav-number">6.</span> <span class="nav-text">相关文档</span></a></li></ol></div>
             
 
           </div>
