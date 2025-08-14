@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面 - 子航的博客</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .content {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .timestamp {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 测试页面</h1>
+    
+    <div class="content">
+        <h2>部署测试成功！</h2>
+        <p>如果你能看到这个页面，说明 Hexo 博客已经成功部署到 GitHub Pages。</p>
+        <p>这是一个手动创建的测试页面，用于验证部署流程是否正常工作。</p>
+    </div>
+    
+    <div class="content">
+        <h3>下一步计划：</h3>
+        <ul>
+            <li>解决 Hexo 生成问题</li>
+            <li>配置正确的主题</li>
+            <li>添加博客内容</li>
+            <li>优化 SEO 设置</li>
+        </ul>
+    </div>
+    
+    <div class="timestamp">
+        生成时间: <span id="timestamp"></span>
+    </div>
+    
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('zh-CN');
+    </script>
+</body>
+</html>
