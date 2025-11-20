@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://clarklu.com/sitemap.xml
+Sitemap: https://clarklu.com/baidusitemap.xml
