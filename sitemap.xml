@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://clarklu.com/p/bed38e11.html</loc>
+    
+    <lastmod>2025-11-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://clarklu.com/404.html</loc>
     
     <lastmod>2025-11-20</lastmod>
@@ -83,7 +92,7 @@
   </url>
   
   <url>
-    <loc>https://clarklu.com/p/c8c843a9.html</loc>
+    <loc>https://clarklu.com/p/c6651072.html</loc>
     
     <lastmod>2025-11-20</lastmod>
     
@@ -92,7 +101,7 @@
   </url>
   
   <url>
-    <loc>https://clarklu.com/p/c6651072.html</loc>
+    <loc>https://clarklu.com/p/c8c843a9.html</loc>
     
     <lastmod>2025-11-20</lastmod>
     
@@ -135,6 +144,48 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://clarklu.com/tags/GitHub-Pages/</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/%E5%A4%9A%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A/</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/Cloudflare/</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/DNS%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/SEO/</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/</loc>
