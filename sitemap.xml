@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://clarklu.com/p/openclaw-birth-note.html</loc>
+    
+    <lastmod>2026-03-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://clarklu.com/p/tg-openclaw-blogflow.html</loc>
     
     <lastmod>2026-03-10</lastmod>
@@ -261,6 +270,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://clarklu.com/tags/ChatGPT-Plus/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -279,6 +295,13 @@
   
   <url>
     <loc>https://clarklu.com/categories/AI%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/categories/shuoshuo/</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

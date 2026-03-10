@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>OpenClaw 诞生记 | Clark Lu's Blog 聆风的个人站点</title><meta name="author" content="Clark Lu"><meta name="copyright" content="Clark Lu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="恭喜我的龙虾 OpenClaw 正式诞生。🦞 它现在用的是我共享出来的一套 ChatGPT Plus 能力。一个月 20 美金，基本把我常用的几条线都串起来了：网页端、Codex、OpenClaw、手机 App，覆盖面真的很全。 这件事最让我有感觉的，不是单独某个工具多强，而是它们终于开始能连成一条工作流：平时在 Telegram 里聊天、讨论、安排事情，确认后再让 OpenClaw 去执行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenClaw 诞生记">
+<meta property="og:url" content="https://clarklu.com/p/openclaw-birth-note.html">
+<meta property="og:site_name" content="Clark Lu&#39;s Blog 聆风的个人站点">
+<meta property="og:description" content="恭喜我的龙虾 OpenClaw 正式诞生。🦞 它现在用的是我共享出来的一套 ChatGPT Plus 能力。一个月 20 美金，基本把我常用的几条线都串起来了：网页端、Codex、OpenClaw、手机 App，覆盖面真的很全。 这件事最让我有感觉的，不是单独某个工具多强，而是它们终于开始能连成一条工作流：平时在 Telegram 里聊天、讨论、安排事情，确认后再让 OpenClaw 去执行。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://clarklu.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-03-10T11:30:00.000Z">
+<meta property="article:modified_time" content="2026-03-10T11:32:06.310Z">
+<meta property="article:author" content="Clark Lu">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="Codex">
+<meta property="article:tag" content="Telegram">
+<meta property="article:tag" content="ChatGPT Plus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://clarklu.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "OpenClaw 诞生记",
+  "url": "https://clarklu.com/p/openclaw-birth-note.html",
+  "image": "https://clarklu.com/img/butterfly-icon.png",
+  "datePublished": "2026-03-10T11:30:00.000Z",
+  "dateModified": "2026-03-10T11:32:06.310Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Clark Lu",
+      "url": "https://clarklu.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://clarklu.com/p/openclaw-birth-note.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OpenClaw 诞生记',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Clark Lu's Blog 聆风的个人站点" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Clark Lu's Blog 聆风的个人站点</span></a><a class="nav-page-title" href="/"><span class="site-name">OpenClaw 诞生记</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">OpenClaw 诞生记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-10T11:30:00.000Z" title="发表于 2026-03-10 19:30:00">2026-03-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-10T11:32:06.310Z" title="更新于 2026-03-10 19:32:06">2026-03-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/shuoshuo/">shuoshuo</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>恭喜我的龙虾 OpenClaw 正式诞生。🦞</p>
+<p>它现在用的是我共享出来的一套 ChatGPT Plus 能力。一个月 20 美金，基本把我常用的几条线都串起来了：网页端、Codex、OpenClaw、手机 App，覆盖面真的很全。</p>
+<p>这件事最让我有感觉的，不是单独某个工具多强，而是它们终于开始能连成一条工作流：平时在 Telegram 里聊天、讨论、安排事情，确认后再让 OpenClaw 去执行。</p>
+<p>当然，现实也没那么理想化。在大陆网络环境下，还是会遇到一些坑，比如登录链路、连接稳定性、服务切换、配置细节，都会比想象中更磨人。</p>
+<p>但反过来说，也正因为这些坑都是真实存在的，所以一旦跑通，体验会特别值。</p>
+<p>先记一笔：我的龙虾 OpenClaw，今天算是正式上岗了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://clarklu.com">Clark Lu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://clarklu.com/p/openclaw-birth-note.html">https://clarklu.com/p/openclaw-birth-note.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://clarklu.com" target="_blank">Clark Lu's Blog 聆风的个人站点</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OpenClaw/">OpenClaw</a><a class="post-meta__tags" href="/tags/Codex/">Codex</a><a class="post-meta__tags" href="/tags/Telegram/">Telegram</a><a class="post-meta__tags" href="/tags/ChatGPT-Plus/">ChatGPT Plus</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/p/tg-openclaw-blogflow.html" title="把博客发布这件事搬到 Telegram 里"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">把博客发布这件事搬到 Telegram 里</div></div><div class="info-2"><div class="info-item-1">我最近越来越喜欢一种更轻的写博客方式： 平时在 Telegram 里讨论选题、结构、文案和修改，确认后，再让 OpenClaw 去改本地博客源码并发布。 这套方法最吸引我的地方，不是“AI 自动写文”，而是它把写作和发布拆成了两件更顺手的事。 为什么这样更适合个人博客很多时候，不是没东西写，而是发布流程太重。 明明脑子里已经有题目，也知道大概要表达什么，但一想到还要：  打开博客项目 新建文章文件 写 front matter 调整文案 本地预览 再执行部署  人就容易拖。 Telegram 刚好相反。 它足够轻，想到什么就能直接聊：  这个选题值不值得写？ 标题怎么起更好？ 结构是不是太散？ 这段文案能不能更顺一点？  这样一来，文章往往不是在编辑器里硬写出来的，而是在日常对话里慢慢长出来的。 OpenClaw 在这里真正有价值的地方如果只是聊天给建议，这件事还不算完整。 真正有用的是：  我在 Telegram 里跟 OpenClaw 讨论 OpenClaw 帮我整理提纲、修改文案 我确认之后 它再去本地 Hexo 项目里改文件、生成页面、执行发布  也就是说，OpenCla...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/p/d17fc333.html" title="我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-10</div><div class="info-item-2">我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑</div></div><div class="info-2"><div class="info-item-1">更新时间：2026-03-10 这篇文章记录一次从零部署 OpenClaw 的真实过程，目标不是“装上 CLI 就算完”，而是把下面几条链路都跑通：  OpenClaw CLI 可用 Gateway 作为 macOS 后台服务长期运行 能接入 Telegram Bot 能调起 OpenClaw 自带的浏览器自动化 默认模型最终切到 openai-codex  这套过程里最值钱的，不是安装命令本身，而是几个容易卡住的点：  旧版 Node 会干扰安装器判断 codex-cli 和 OpenClaw 某些默认参数不兼容 Telegram token 文件格式很容易因为多余字符出问题 openai-codex 的 OAuth 可能卡在一个很像“地区限制”的 403 这个 403 的真正原因，未必是你真的在不支持地区  一、目标不是“装上”，而是“真正可用”很多工具安装都容易停在第一步：命令能运行，但实际链路并不通。 我这次的标准更严格一些，至少要满足这几个条件：  openclaw 命令能正常执行 打开 dashboard 时 Gateway 是活的 Telegram Bot 能收到消...</div></div></div></a><a class="pagination-related" href="/p/tg-openclaw-blogflow.html" title="把博客发布这件事搬到 Telegram 里"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-03-10</div><div class="info-item-2">把博客发布这件事搬到 Telegram 里</div></div><div class="info-2"><div class="info-item-1">我最近越来越喜欢一种更轻的写博客方式： 平时在 Telegram 里讨论选题、结构、文案和修改，确认后，再让 OpenClaw 去改本地博客源码并发布。 这套方法最吸引我的地方，不是“AI 自动写文”，而是它把写作和发布拆成了两件更顺手的事。 为什么这样更适合个人博客很多时候，不是没东西写，而是发布流程太重。 明明脑子里已经有题目，也知道大概要表达什么，但一想到还要：  打开博客项目 新建文章文件 写 front matter 调整文案 本地预览 再执行部署  人就容易拖。 Telegram 刚好相反。 它足够轻，想到什么就能直接聊：  这个选题值不值得写？ 标题怎么起更好？ 结构是不是太散？ 这段文案能不能更顺一点？  这样一来，文章往往不是在编辑器里硬写出来的，而是在日常对话里慢慢长出来的。 OpenClaw 在这里真正有价值的地方如果只是聊天给建议，这件事还不算完整。 真正有用的是：  我在 Telegram 里跟 OpenClaw 讨论 OpenClaw 帮我整理提纲、修改文案 我确认之后 它再去本地 Hexo 项目里改文件、生成页面、执行发布  也就是说，OpenCla...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Clark Lu</div><div class="author-info-description">记录点东西</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/openclaw-birth-note.html" title="OpenClaw 诞生记">OpenClaw 诞生记</a><time datetime="2026-03-10T11:30:00.000Z" title="发表于 2026-03-10 19:30:00">2026-03-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/tg-openclaw-blogflow.html" title="把博客发布这件事搬到 Telegram 里">把博客发布这件事搬到 Telegram 里</a><time datetime="2026-03-10T11:05:00.000Z" title="发表于 2026-03-10 19:05:00">2026-03-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/d17fc333.html" title="我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑">我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑</a><time datetime="2026-03-10T02:00:00.000Z" title="发表于 2026-03-10 10:00:00">2026-03-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/4a17b156.html" title="Hello World">Hello World</a><time datetime="2025-11-20T08:45:17.173Z" title="发表于 2025-11-20 16:45:17">2025-11-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/bed38e11.html" title="GitHub Pages 多域名绑定指南：突破 CNAME 单域名限制">GitHub Pages 多域名绑定指南：突破 CNAME 单域名限制</a><time datetime="2025-11-20T02:00:00.000Z" title="发表于 2025-11-20 10:00:00">2025-11-20</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Clark Lu</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><div class="js-pjax"></div><script async data-pjax src="/"></script></div></body></html>
