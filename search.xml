@@ -921,4 +921,62 @@
         <tag>故障排查</tag>
       </tags>
   </entry>
+  <entry>
+    <title>把博客发布这件事搬到 Telegram 里</title>
+    <url>//p/tg-openclaw-blogflow.html</url>
+    <content><![CDATA[<p>我最近越来越喜欢一种更轻的写博客方式：</p>
+<p><strong>平时在 Telegram 里讨论选题、结构、文案和修改，确认后，再让 OpenClaw 去改本地博客源码并发布。</strong></p>
+<p>这套方法最吸引我的地方，不是“AI 自动写文”，而是它把写作和发布拆成了两件更顺手的事。</p>
+<h2 id="为什么这样更适合个人博客"><a href="#为什么这样更适合个人博客" class="headerlink" title="为什么这样更适合个人博客"></a>为什么这样更适合个人博客</h2><p>很多时候，不是没东西写，而是发布流程太重。</p>
+<p>明明脑子里已经有题目，也知道大概要表达什么，但一想到还要：</p>
+<ul>
+<li>打开博客项目</li>
+<li>新建文章文件</li>
+<li>写 front matter</li>
+<li>调整文案</li>
+<li>本地预览</li>
+<li>再执行部署</li>
+</ul>
+<p>人就容易拖。</p>
+<p>Telegram 刚好相反。</p>
+<p>它足够轻，想到什么就能直接聊：</p>
+<ul>
+<li>这个选题值不值得写？</li>
+<li>标题怎么起更好？</li>
+<li>结构是不是太散？</li>
+<li>这段文案能不能更顺一点？</li>
+</ul>
+<p>这样一来，文章往往不是在编辑器里硬写出来的，而是在日常对话里慢慢长出来的。</p>
+<h2 id="OpenClaw-在这里真正有价值的地方"><a href="#OpenClaw-在这里真正有价值的地方" class="headerlink" title="OpenClaw 在这里真正有价值的地方"></a>OpenClaw 在这里真正有价值的地方</h2><p>如果只是聊天给建议，这件事还不算完整。</p>
+<p>真正有用的是：</p>
+<ul>
+<li>我在 Telegram 里跟 OpenClaw 讨论</li>
+<li>OpenClaw 帮我整理提纲、修改文案</li>
+<li>我确认之后</li>
+<li>它再去本地 Hexo 项目里改文件、生成页面、执行发布</li>
+</ul>
+<p>也就是说，OpenClaw 不只是“会聊”，而是能把对话真正接到本地博客工程上。</p>
+<p>这就把一条完整链路接起来了：</p>
+<p><strong>想法 → 讨论 → 成稿 → 改源码 → 发布</strong></p>
+<h2 id="这套流程的核心优势"><a href="#这套流程的核心优势" class="headerlink" title="这套流程的核心优势"></a>这套流程的核心优势</h2><p>我觉得它至少有三个优点。</p>
+<h3 id="1-写作门槛更低"><a href="#1-写作门槛更低" class="headerlink" title="1. 写作门槛更低"></a>1. 写作门槛更低</h3><p>你不需要每次都先进入“正式写作状态”，只要先聊起来就行。</p>
+<h3 id="2-质量控制还在自己手里"><a href="#2-质量控制还在自己手里" class="headerlink" title="2. 质量控制还在自己手里"></a>2. 质量控制还在自己手里</h3><p>OpenClaw 可以整理、润色、执行，但最后发不发，还是我确认。</p>
+<h3 id="3-本地源码依然是最终真相"><a href="#3-本地源码依然是最终真相" class="headerlink" title="3. 本地源码依然是最终真相"></a>3. 本地源码依然是最终真相</h3><p>Telegram 只是讨论入口，真正落地的内容仍然回到 Hexo 源码里，所以这个流程不会破坏原本博客的可维护性。</p>
+<h2 id="我为什么想继续沿着这个方向做"><a href="#我为什么想继续沿着这个方向做" class="headerlink" title="我为什么想继续沿着这个方向做"></a>我为什么想继续沿着这个方向做</h2><p>因为对个人博客来说，最难的不是搭站，而是持续更新。</p>
+<p>而持续更新往往不取决于你有没有更强的工具，而取决于你的发布流程是不是足够顺手。</p>
+<p>对我来说，这套方式的意义就在这里：</p>
+<p><strong>平时在 Telegram 里完成大部分思考和修改，确认后再让 OpenClaw 负责执行发布。</strong></p>
+<p>这样既保留了表达的主动权，也减少了“明明想写，但懒得发”的摩擦。</p>
+<p>如果你本来就有自己的 Hexo 博客，这条路很值得试一试。</p>
+]]></content>
+      <categories>
+        <category>AI实践</category>
+      </categories>
+      <tags>
+        <tag>OpenClaw</tag>
+        <tag>Telegram</tag>
+        <tag>Hexo</tag>
+        <tag>内容工作流</tag>
+      </tags>
+  </entry>
 </search>
