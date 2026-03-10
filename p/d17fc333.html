@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑 | Clark Lu's Blog 聆风的个人站点</title><meta name="author" content="Clark Lu"><meta name="copyright" content="Clark Lu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="更新时间：2026-03-10 这篇文章记录一次从零部署 OpenClaw 的真实过程，目标不是“装上 CLI 就算完”，而是把下面几条链路都跑通：  OpenClaw CLI 可用 Gateway 作为 macOS 后台服务长期运行 能接入 Telegram Bot 能调起 OpenClaw 自带的浏览器自动化 默认模型最终切到 openai-codex  这套过程里最值钱的，不是安装命令本身，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑">
+<meta property="og:url" content="https://clarklu.com/p/d17fc333.html">
+<meta property="og:site_name" content="Clark Lu&#39;s Blog 聆风的个人站点">
+<meta property="og:description" content="更新时间：2026-03-10 这篇文章记录一次从零部署 OpenClaw 的真实过程，目标不是“装上 CLI 就算完”，而是把下面几条链路都跑通：  OpenClaw CLI 可用 Gateway 作为 macOS 后台服务长期运行 能接入 Telegram Bot 能调起 OpenClaw 自带的浏览器自动化 默认模型最终切到 openai-codex  这套过程里最值钱的，不是安装命令本身，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://clarklu.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-03-10T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-03-10T09:31:28.835Z">
+<meta property="article:author" content="Clark Lu">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="Codex">
+<meta property="article:tag" content="Telegram">
+<meta property="article:tag" content="浏览器自动化">
+<meta property="article:tag" content="故障排查">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://clarklu.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑",
+  "url": "https://clarklu.com/p/d17fc333.html",
+  "image": "https://clarklu.com/img/butterfly-icon.png",
+  "datePublished": "2026-03-10T02:00:00.000Z",
+  "dateModified": "2026-03-10T09:31:28.835Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Clark Lu",
+      "url": "https://clarklu.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://clarklu.com/p/d17fc333.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Clark Lu's Blog 聆风的个人站点" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Clark Lu's Blog 聆风的个人站点</span></a><a class="nav-page-title" href="/"><span class="site-name">我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-10T02:00:00.000Z" title="发表于 2026-03-10 10:00:00">2026-03-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-10T09:31:28.835Z" title="更新于 2026-03-10 17:31:28">2026-03-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI%E5%AE%9E%E8%B7%B5/">AI实践</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>更新时间：2026-03-10</p>
+<p>这篇文章记录一次从零部署 OpenClaw 的真实过程，目标不是“装上 CLI 就算完”，而是把下面几条链路都跑通：</p>
+<ul>
+<li>OpenClaw CLI 可用</li>
+<li>Gateway 作为 macOS 后台服务长期运行</li>
+<li>能接入 Telegram Bot</li>
+<li>能调起 OpenClaw 自带的浏览器自动化</li>
+<li>默认模型最终切到 <code>openai-codex</code></li>
+</ul>
+<p>这套过程里最值钱的，不是安装命令本身，而是几个容易卡住的点：</p>
+<ul>
+<li>旧版 Node 会干扰安装器判断</li>
+<li><code>codex-cli</code> 和 OpenClaw 某些默认参数不兼容</li>
+<li>Telegram token 文件格式很容易因为多余字符出问题</li>
+<li><code>openai-codex</code> 的 OAuth 可能卡在一个很像“地区限制”的 403</li>
+<li>这个 403 的真正原因，未必是你真的在不支持地区</li>
+</ul>
+<h2 id="一、目标不是“装上”，而是“真正可用”"><a href="#一、目标不是“装上”，而是“真正可用”" class="headerlink" title="一、目标不是“装上”，而是“真正可用”"></a>一、目标不是“装上”，而是“真正可用”</h2><p>很多工具安装都容易停在第一步：命令能运行，但实际链路并不通。</p>
+<p>我这次的标准更严格一些，至少要满足这几个条件：</p>
+<ol>
+<li><code>openclaw</code> 命令能正常执行</li>
+<li>打开 dashboard 时 Gateway 是活的</li>
+<li>Telegram Bot 能收到消息并完成 pairing</li>
+<li>OpenClaw 能控制受管浏览器，而不是只会口头回答</li>
+<li>模型配置最终切换到更适合 tool calling 的 <code>openai-codex</code></li>
+</ol>
+<p>如果只完成第 1 步，其实离“可用”还差很远。</p>
+<h2 id="二、安装阶段第一个坑：机器里同时有两个-Node"><a href="#二、安装阶段第一个坑：机器里同时有两个-Node" class="headerlink" title="二、安装阶段第一个坑：机器里同时有两个 Node"></a>二、安装阶段第一个坑：机器里同时有两个 Node</h2><p>我这台机器上同时存在：</p>
+<ul>
+<li>一个较新的 Node 22</li>
+<li>一个旧的 Homebrew Node 18</li>
+</ul>
+<p>结果就是，OpenClaw 官方安装器优先识别到了旧 Node，导致安装路径和行为不稳定。</p>
+<p>这个坑的结论很直接：</p>
+<ul>
+<li>如果系统里有多个 Node 版本，不要盲信安装器自动判断</li>
+<li>先确认到底要让 OpenClaw 跑在哪个 Node 上</li>
+<li>必要时直接用你确认没问题的 Node 去全局安装</li>
+</ul>
+<p>我最后采用的是直接用 Node 22 执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g openclaw@latest</span><br></pre></td></tr></table></figure>
+
+<p>这比继续纠缠安装脚本的版本判断更省时间。</p>
+<h2 id="三、第二个坑：装完后-shell-可能开始报错"><a href="#三、第二个坑：装完后-shell-可能开始报错" class="headerlink" title="三、第二个坑：装完后 shell 可能开始报错"></a>三、第二个坑：装完后 shell 可能开始报错</h2><p>安装过程中，OpenClaw 会往 shell 配置里加补全相关内容。</p>
+<p>问题在于，如果补全文件当时还没生成，或者生成顺序不对，新的 shell 会直接报错。最常见的表现是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ... openclaw.zsh: no such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>这个问题不算大，但很烦。修复思路也简单：</p>
+<ul>
+<li>不要无条件 <code>source</code></li>
+<li>改成“文件存在才加载”</li>
+</ul>
+<p>这属于典型的“安装器半完成状态”，不影响核心功能，但会影响日常使用体验。</p>
+<h2 id="四、第三个坑：OpenClaw-接-codex-cli-后，dashboard-会直接报错"><a href="#四、第三个坑：OpenClaw-接-codex-cli-后，dashboard-会直接报错" class="headerlink" title="四、第三个坑：OpenClaw 接 codex-cli 后，dashboard 会直接报错"></a>四、第三个坑：OpenClaw 接 <code>codex-cli</code> 后，dashboard 会直接报错</h2><p>我一开始让 OpenClaw 默认走本机的 <code>codex-cli</code>，这样做的好处是：</p>
+<ul>
+<li>可以直接复用本地已经可用的 Codex 环境</li>
+<li>不需要一开始就重新折腾 OAuth</li>
+</ul>
+<p>但很快就撞上了兼容问题。</p>
+<p>OpenClaw 在恢复会话时会调用类似这样的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codex <span class="built_in">exec</span> resume ... --color never ...</span><br></pre></td></tr></table></figure>
+
+<p>而我本机这版 <code>codex exec resume</code> 不接受 <code>--color</code>，于是 dashboard 和 Telegram 回复里都会报：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unexpected argument &#x27;--color&#x27; found</span><br></pre></td></tr></table></figure>
+
+<p>这个错误很容易让人误判成：</p>
+<ul>
+<li>Telegram 配错了</li>
+<li>Dashboard 挂了</li>
+<li>Codex 自己坏了</li>
+</ul>
+<p>其实都不是。根因是：</p>
+<ul>
+<li>OpenClaw 默认拼出来的 <code>resumeArgs</code></li>
+<li>和当前这版 <code>codex-cli</code> 的参数能力不一致</li>
+</ul>
+<p>修法也很明确：</p>
+<ul>
+<li>覆盖 OpenClaw 的 <code>codex-cli.resumeArgs</code></li>
+<li>去掉 <code>--color</code></li>
+<li>只保留当前版本 <code>codex</code> 支持的参数</li>
+</ul>
+<p>这个修完之后，至少“会话继续报错”这条线就先恢复了。</p>
+<h2 id="五、第四个坑：Telegram-Bot-token-可能不是“看起来对”就真的对"><a href="#五、第四个坑：Telegram-Bot-token-可能不是“看起来对”就真的对" class="headerlink" title="五、第四个坑：Telegram Bot token 可能不是“看起来对”就真的对"></a>五、第四个坑：Telegram Bot token 可能不是“看起来对”就真的对</h2><p>Telegram 接入时，我遇到一个很典型的问题：</p>
+<ul>
+<li>token 文件里尾部多了异常字符</li>
+</ul>
+<p>这种问题肉眼不一定第一时间能意识到，因为你看上去像是一整串 token，但实际拿去调 Telegram API 就会出问题。</p>
+<p>我的结论是：</p>
+<ul>
+<li>Telegram token 一定要以纯文本、正常换行保存</li>
+<li>不要带多余字符</li>
+<li>最稳妥的验证方式不是“看起来像对”，而是直接调官方 <code>getMe</code></li>
+</ul>
+<p>验证命令类似：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="string">&quot;https://api.telegram.org/bot&lt;TOKEN&gt;/getMe&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>只有返回 <code>ok: true</code>，才算 token 真的可用。</p>
+<h2 id="六、第五个坑：Telegram-能聊天，不代表它会自动调用浏览器工具"><a href="#六、第五个坑：Telegram-能聊天，不代表它会自动调用浏览器工具" class="headerlink" title="六、第五个坑：Telegram 能聊天，不代表它会自动调用浏览器工具"></a>六、第五个坑：Telegram 能聊天，不代表它会自动调用浏览器工具</h2><p>我后面又给 OpenClaw 接上了浏览器自动化。</p>
+<p>这部分要先说清楚一个边界：</p>
+<ul>
+<li>OpenClaw 可以控制受管浏览器</li>
+<li>不等于它能直接接管你的整个桌面</li>
+</ul>
+<p>也就是说，它能做的是：</p>
+<ul>
+<li>打开网页</li>
+<li>截网页图</li>
+<li>点击页面元素</li>
+<li>输入内容</li>
+<li>抓页面结构</li>
+</ul>
+<p>但不是那种“直接操作你眼前整台电脑 GUI”的远控模式。</p>
+<p>浏览器自动化本身配通之后，我实际验证了：</p>
+<ul>
+<li><code>open</code></li>
+<li><code>snapshot</code></li>
+</ul>
+<p>都能成功执行。</p>
+<p>但 Telegram 里一开始还是经常只会回：</p>
+<ul>
+<li>我不能打开图形浏览器</li>
+<li>我不能截图</li>
+</ul>
+<p>这时候最容易误判成：</p>
+<ul>
+<li>macOS 权限没开</li>
+<li>浏览器自动化根本没成功</li>
+</ul>
+<p>其实更接近真实的问题是：</p>
+<ol>
+<li>当时默认模型还是 <code>codex-cli</code></li>
+<li>Telegram 会话没有被明确允许使用 <code>browser</code> 工具</li>
+</ol>
+<p>所以这里的关键不是再去折腾系统权限，而是：</p>
+<ul>
+<li>给 Telegram 直连用户单独放开 <code>browser</code></li>
+<li>给它一个明确的 system prompt，要求网页任务优先调用 browser tool</li>
+</ul>
+<p>换句话说，工具装好了，不等于 agent 一定会用。</p>
+<h2 id="七、为什么我最后还是从-codex-cli-切到了-openai-codex"><a href="#七、为什么我最后还是从-codex-cli-切到了-openai-codex" class="headerlink" title="七、为什么我最后还是从 codex-cli 切到了 openai-codex"></a>七、为什么我最后还是从 <code>codex-cli</code> 切到了 <code>openai-codex</code></h2><p>这一步是整个部署里最重要的结构性调整。</p>
+<p>原因很简单：</p>
+<ul>
+<li><code>codex-cli</code> 更适合代码、终端、文件任务</li>
+<li>但在 OpenClaw 这套架构里，它不是最适合承接原生 tools 的那条路</li>
+</ul>
+<p>如果你的目标是：</p>
+<ul>
+<li>Telegram 发一句话</li>
+<li>OpenClaw 真去调用 browser</li>
+<li>再把结果返回</li>
+</ul>
+<p>那最终还是更适合切到 <code>openai-codex</code> 这种 provider 路线。</p>
+<p>我最开始也以为登录一下就完了，结果没那么简单。</p>
+<h2 id="八、最难定位的坑：OAuth-看起来成功了，但最后还是-403"><a href="#八、最难定位的坑：OAuth-看起来成功了，但最后还是-403" class="headerlink" title="八、最难定位的坑：OAuth 看起来成功了，但最后还是 403"></a>八、最难定位的坑：OAuth 看起来成功了，但最后还是 403</h2><p>切换 <code>openai-codex</code> 时，浏览器会先跳到 OpenAI 登录页。</p>
+<p>前两次我在浏览器里都看到了非常像“已经成功”的提示：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Authentication successful. Return to your terminal to continue.</span><br></pre></td></tr></table></figure>
+
+<p>但终端最后却失败，报的是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">code-&gt;token failed: 403</span><br><span class="line">unsupported_country_region_territory</span><br></pre></td></tr></table></figure>
+
+<p>这个错误非常迷惑，因为它会让人第一反应觉得：</p>
+<ul>
+<li>是地区限制</li>
+<li>是账号不支持</li>
+<li>是代理不稳定</li>
+</ul>
+<p>这些猜测并不完全错，但也不够精确。</p>
+<p>真正要分清的是：</p>
+<ol>
+<li>浏览器登录成功</li>
+<li>本地回调成功</li>
+<li>失败发生在 OAuth 的 <code>authorization code -&gt; access token</code> 交换</li>
+</ol>
+<p>也就是说，卡住的并不是浏览器那一步，而是 Node.js 进程发出的那一步请求。</p>
+<h2 id="九、这次-403-的真正根因：浏览器和-Node-js-不一定走同一条代理链路"><a href="#九、这次-403-的真正根因：浏览器和-Node-js-不一定走同一条代理链路" class="headerlink" title="九、这次 403 的真正根因：浏览器和 Node.js 不一定走同一条代理链路"></a>九、这次 403 的真正根因：浏览器和 Node.js 不一定走同一条代理链路</h2><p>这是这次踩坑里最有价值的经验。</p>
+<p>我机器上明明已经有代理环境变量，比如：</p>
+<ul>
+<li><code>http_proxy</code></li>
+<li><code>https_proxy</code></li>
+</ul>
+<p>而且浏览器登录页也确实能正常打开。</p>
+<p>但问题在于：</p>
+<ul>
+<li>浏览器能走代理，不代表 Node.js 的 <code>fetch()</code> 就一定按你想象的方式走代理</li>
+</ul>
+<p>最后证明有效的修复方法是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NODE_USE_ENV_PROXY=1 openclaw models auth login --provider openai-codex --set-default</span><br></pre></td></tr></table></figure>
+
+<p>加上这行之后，OAuth 第三次终于成功了。</p>
+<p>这说明前面的 403，至少在我的场景里，主因不是“真的身处不支持地区”，而更像是：</p>
+<ul>
+<li>Node.js 发往 OpenAI token endpoint 的请求</li>
+<li>没有可靠走到和浏览器同一条翻墙链路</li>
+</ul>
+<p>所以这次的结论很明确：</p>
+<ul>
+<li>浏览器成功，不等于 OAuth 真正成功</li>
+<li>403 的关键点不在网页登录页，而在 token 交换</li>
+<li>如果你依赖环境代理，<code>NODE_USE_ENV_PROXY=1</code> 值得优先排查</li>
+</ul>
+<h2 id="十、最终状态：哪些东西算真正跑通了"><a href="#十、最终状态：哪些东西算真正跑通了" class="headerlink" title="十、最终状态：哪些东西算真正跑通了"></a>十、最终状态：哪些东西算真正跑通了</h2><p>到最后，这套环境的可用状态可以归纳成几条：</p>
+<ul>
+<li>OpenClaw CLI 可运行</li>
+<li>Gateway 作为 macOS 后台服务正常运行</li>
+<li>Telegram Bot 可接入并完成 pairing</li>
+<li>受管浏览器可打开页面并获取页面结构</li>
+<li>默认模型切换到了 <code>openai-codex</code></li>
+</ul>
+<p>但也要诚实说明边界：</p>
+<ul>
+<li>它能操作受管浏览器，不等于能直接远控整台电脑</li>
+<li>它能处理网页截图，不等于能主动抓你当前桌面</li>
+<li>某些代理行为如果不固化到后台服务环境里，后续重启后仍可能不稳定</li>
+</ul>
+<h2 id="十一、如果你也要照着做，我建议优先记住这几条"><a href="#十一、如果你也要照着做，我建议优先记住这几条" class="headerlink" title="十一、如果你也要照着做，我建议优先记住这几条"></a>十一、如果你也要照着做，我建议优先记住这几条</h2><h3 id="1-先确认到底是哪一个-Node-在生效"><a href="#1-先确认到底是哪一个-Node-在生效" class="headerlink" title="1. 先确认到底是哪一个 Node 在生效"></a>1. 先确认到底是哪一个 Node 在生效</h3><p>如果系统里同时有多个 Node，安装器很容易判断错。</p>
+<h3 id="2-codex-cli-能跑，不代表和-OpenClaw-默认参数完全兼容"><a href="#2-codex-cli-能跑，不代表和-OpenClaw-默认参数完全兼容" class="headerlink" title="2. codex-cli 能跑，不代表和 OpenClaw 默认参数完全兼容"></a>2. <code>codex-cli</code> 能跑，不代表和 OpenClaw 默认参数完全兼容</h3><p>遇到 <code>--color</code> 这种错误，优先去看 OpenClaw 给 CLI backend 拼了什么参数。</p>
+<h3 id="3-Telegram-token-一定用官方接口验证"><a href="#3-Telegram-token-一定用官方接口验证" class="headerlink" title="3. Telegram token 一定用官方接口验证"></a>3. Telegram token 一定用官方接口验证</h3><p>不要靠肉眼判断。</p>
+<h3 id="4-浏览器工具能用，不代表-Telegram-会自动调用"><a href="#4-浏览器工具能用，不代表-Telegram-会自动调用" class="headerlink" title="4. 浏览器工具能用，不代表 Telegram 会自动调用"></a>4. 浏览器工具能用，不代表 Telegram 会自动调用</h3><p>工具权限、用户级配置和提示词都可能影响结果。</p>
+<h3 id="5-OAuth-的-403-不要只盯“地区”"><a href="#5-OAuth-的-403-不要只盯“地区”" class="headerlink" title="5. OAuth 的 403 不要只盯“地区”"></a>5. OAuth 的 403 不要只盯“地区”</h3><p>要把浏览器登录和 Node.js token 交换分开看。</p>
+<h3 id="6-代理变量存在，不代表-Node-js-一定会按预期使用"><a href="#6-代理变量存在，不代表-Node-js-一定会按预期使用" class="headerlink" title="6. 代理变量存在，不代表 Node.js 一定会按预期使用"></a>6. 代理变量存在，不代表 Node.js 一定会按预期使用</h3><p><code>NODE_USE_ENV_PROXY=1</code> 是这次最关键的修复点。</p>
+<h2 id="十二、最后的建议"><a href="#十二、最后的建议" class="headerlink" title="十二、最后的建议"></a>十二、最后的建议</h2><p>如果你只是想体验 OpenClaw，装上 CLI 就够了。</p>
+<p>但如果你想把它真的接进自己的工作流，比如：</p>
+<ul>
+<li>Telegram 消息入口</li>
+<li>浏览器自动化</li>
+<li>长期后台运行</li>
+<li>OpenAI Codex provider</li>
+</ul>
+<p>那就不要把“安装成功”理解成“部署成功”。</p>
+<p>真正难的部分，几乎都在安装之后：</p>
+<ul>
+<li>参数兼容</li>
+<li>代理链路</li>
+<li>token 文件格式</li>
+<li>后台服务环境</li>
+<li>tool calling 行为</li>
+</ul>
+<p>这几块处理好了，OpenClaw 才算从“能启动”进入“能用”。</p>
+<h2 id="附：文中提到的公开命令示例"><a href="#附：文中提到的公开命令示例" class="headerlink" title="附：文中提到的公开命令示例"></a>附：文中提到的公开命令示例</h2><p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g openclaw@latest</span><br></pre></td></tr></table></figure>
+
+<p>查看模型状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openclaw models status --plain</span><br></pre></td></tr></table></figure>
+
+<p>受管浏览器验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openclaw browser open https://example.com --browser-profile webauto</span><br><span class="line">openclaw browser snapshot --browser-profile webauto</span><br></pre></td></tr></table></figure>
+
+<p>Telegram token 验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="string">&quot;https://api.telegram.org/bot&lt;TOKEN&gt;/getMe&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>重新执行 OpenAI Codex OAuth：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NODE_USE_ENV_PROXY=1 openclaw models auth login --provider openai-codex --set-default</span><br></pre></td></tr></table></figure>
+
+<p>如果后续我要继续整理，我会再拆两篇：</p>
+<ul>
+<li>一篇写“纯安装步骤版”</li>
+<li>一篇写“故障排查版”</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://clarklu.com">Clark Lu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://clarklu.com/p/d17fc333.html">https://clarklu.com/p/d17fc333.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://clarklu.com" target="_blank">Clark Lu's Blog 聆风的个人站点</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OpenClaw/">OpenClaw</a><a class="post-meta__tags" href="/tags/Codex/">Codex</a><a class="post-meta__tags" href="/tags/Telegram/">Telegram</a><a class="post-meta__tags" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/">浏览器自动化</a><a class="post-meta__tags" href="/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/">故障排查</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/p/4a17b156.html" title="Hello World"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Hello World</div></div><div class="info-2"><div class="info-item-1">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Clark Lu</div><div class="author-info-description">记录点东西</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%9B%AE%E6%A0%87%E4%B8%8D%E6%98%AF%E2%80%9C%E8%A3%85%E4%B8%8A%E2%80%9D%EF%BC%8C%E8%80%8C%E6%98%AF%E2%80%9C%E7%9C%9F%E6%AD%A3%E5%8F%AF%E7%94%A8%E2%80%9D"><span class="toc-number">1.</span> <span class="toc-text">一、目标不是“装上”，而是“真正可用”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E9%98%B6%E6%AE%B5%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%9D%91%EF%BC%9A%E6%9C%BA%E5%99%A8%E9%87%8C%E5%90%8C%E6%97%B6%E6%9C%89%E4%B8%A4%E4%B8%AA-Node"><span class="toc-number">2.</span> <span class="toc-text">二、安装阶段第一个坑：机器里同时有两个 Node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%9D%91%EF%BC%9A%E8%A3%85%E5%AE%8C%E5%90%8E-shell-%E5%8F%AF%E8%83%BD%E5%BC%80%E5%A7%8B%E6%8A%A5%E9%94%99"><span class="toc-number">3.</span> <span class="toc-text">三、第二个坑：装完后 shell 可能开始报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%9D%91%EF%BC%9AOpenClaw-%E6%8E%A5-codex-cli-%E5%90%8E%EF%BC%8Cdashboard-%E4%BC%9A%E7%9B%B4%E6%8E%A5%E6%8A%A5%E9%94%99"><span class="toc-number">4.</span> <span class="toc-text">四、第三个坑：OpenClaw 接 codex-cli 后，dashboard 会直接报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%AC%AC%E5%9B%9B%E4%B8%AA%E5%9D%91%EF%BC%9ATelegram-Bot-token-%E5%8F%AF%E8%83%BD%E4%B8%8D%E6%98%AF%E2%80%9C%E7%9C%8B%E8%B5%B7%E6%9D%A5%E5%AF%B9%E2%80%9D%E5%B0%B1%E7%9C%9F%E7%9A%84%E5%AF%B9"><span class="toc-number">5.</span> <span class="toc-text">五、第四个坑：Telegram Bot token 可能不是“看起来对”就真的对</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%AC%AC%E4%BA%94%E4%B8%AA%E5%9D%91%EF%BC%9ATelegram-%E8%83%BD%E8%81%8A%E5%A4%A9%EF%BC%8C%E4%B8%8D%E4%BB%A3%E8%A1%A8%E5%AE%83%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E5%85%B7"><span class="toc-number">6.</span> <span class="toc-text">六、第五个坑：Telegram 能聊天，不代表它会自动调用浏览器工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF%E4%BB%8E-codex-cli-%E5%88%87%E5%88%B0%E4%BA%86-openai-codex"><span class="toc-number">7.</span> <span class="toc-text">七、为什么我最后还是从 codex-cli 切到了 openai-codex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%9C%80%E9%9A%BE%E5%AE%9A%E4%BD%8D%E7%9A%84%E5%9D%91%EF%BC%9AOAuth-%E7%9C%8B%E8%B5%B7%E6%9D%A5%E6%88%90%E5%8A%9F%E4%BA%86%EF%BC%8C%E4%BD%86%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF-403"><span class="toc-number">8.</span> <span class="toc-text">八、最难定位的坑：OAuth 看起来成功了，但最后还是 403</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E8%BF%99%E6%AC%A1-403-%E7%9A%84%E7%9C%9F%E6%AD%A3%E6%A0%B9%E5%9B%A0%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C-Node-js-%E4%B8%8D%E4%B8%80%E5%AE%9A%E8%B5%B0%E5%90%8C%E4%B8%80%E6%9D%A1%E4%BB%A3%E7%90%86%E9%93%BE%E8%B7%AF"><span class="toc-number">9.</span> <span class="toc-text">九、这次 403 的真正根因：浏览器和 Node.js 不一定走同一条代理链路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%9C%80%E7%BB%88%E7%8A%B6%E6%80%81%EF%BC%9A%E5%93%AA%E4%BA%9B%E4%B8%9C%E8%A5%BF%E7%AE%97%E7%9C%9F%E6%AD%A3%E8%B7%91%E9%80%9A%E4%BA%86"><span class="toc-number">10.</span> <span class="toc-text">十、最终状态：哪些东西算真正跑通了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B9%9F%E8%A6%81%E7%85%A7%E7%9D%80%E5%81%9A%EF%BC%8C%E6%88%91%E5%BB%BA%E8%AE%AE%E4%BC%98%E5%85%88%E8%AE%B0%E4%BD%8F%E8%BF%99%E5%87%A0%E6%9D%A1"><span class="toc-number">11.</span> <span class="toc-text">十一、如果你也要照着做，我建议优先记住这几条</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%85%88%E7%A1%AE%E8%AE%A4%E5%88%B0%E5%BA%95%E6%98%AF%E5%93%AA%E4%B8%80%E4%B8%AA-Node-%E5%9C%A8%E7%94%9F%E6%95%88"><span class="toc-number">11.1.</span> <span class="toc-text">1. 先确认到底是哪一个 Node 在生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-codex-cli-%E8%83%BD%E8%B7%91%EF%BC%8C%E4%B8%8D%E4%BB%A3%E8%A1%A8%E5%92%8C-OpenClaw-%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E5%AE%8C%E5%85%A8%E5%85%BC%E5%AE%B9"><span class="toc-number">11.2.</span> <span class="toc-text">2. codex-cli 能跑，不代表和 OpenClaw 默认参数完全兼容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Telegram-token-%E4%B8%80%E5%AE%9A%E7%94%A8%E5%AE%98%E6%96%B9%E6%8E%A5%E5%8F%A3%E9%AA%8C%E8%AF%81"><span class="toc-number">11.3.</span> <span class="toc-text">3. Telegram token 一定用官方接口验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E5%85%B7%E8%83%BD%E7%94%A8%EF%BC%8C%E4%B8%8D%E4%BB%A3%E8%A1%A8-Telegram-%E4%BC%9A%E8%87%AA%E5%8A%A8%E8%B0%83%E7%94%A8"><span class="toc-number">11.4.</span> <span class="toc-text">4. 浏览器工具能用，不代表 Telegram 会自动调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-OAuth-%E7%9A%84-403-%E4%B8%8D%E8%A6%81%E5%8F%AA%E7%9B%AF%E2%80%9C%E5%9C%B0%E5%8C%BA%E2%80%9D"><span class="toc-number">11.5.</span> <span class="toc-text">5. OAuth 的 403 不要只盯“地区”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E4%BB%A3%E7%90%86%E5%8F%98%E9%87%8F%E5%AD%98%E5%9C%A8%EF%BC%8C%E4%B8%8D%E4%BB%A3%E8%A1%A8-Node-js-%E4%B8%80%E5%AE%9A%E4%BC%9A%E6%8C%89%E9%A2%84%E6%9C%9F%E4%BD%BF%E7%94%A8"><span class="toc-number">11.6.</span> <span class="toc-text">6. 代理变量存在，不代表 Node.js 一定会按预期使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E6%9C%80%E5%90%8E%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">12.</span> <span class="toc-text">十二、最后的建议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A%E6%96%87%E4%B8%AD%E6%8F%90%E5%88%B0%E7%9A%84%E5%85%AC%E5%BC%80%E5%91%BD%E4%BB%A4%E7%A4%BA%E4%BE%8B"><span class="toc-number">13.</span> <span class="toc-text">附：文中提到的公开命令示例</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/d17fc333.html" title="我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑">我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑</a><time datetime="2026-03-10T02:00:00.000Z" title="发表于 2026-03-10 10:00:00">2026-03-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/4a17b156.html" title="Hello World">Hello World</a><time datetime="2025-11-20T08:45:17.173Z" title="发表于 2025-11-20 16:45:17">2025-11-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/bed38e11.html" title="GitHub Pages 多域名绑定指南：突破 CNAME 单域名限制">GitHub Pages 多域名绑定指南：突破 CNAME 单域名限制</a><time datetime="2025-11-20T02:00:00.000Z" title="发表于 2025-11-20 10:00:00">2025-11-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/79c3476.html" title="spalsh，单独使用（不使用scrapy框架），如何设置Proxy IP ">spalsh，单独使用（不使用scrapy框架），如何设置Proxy IP </a><time datetime="2022-10-13T05:36:37.000Z" title="发表于 2022-10-13 13:36:37">2022-10-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/9202ce96.html" title="selenium 使用代理的方法汇总">selenium 使用代理的方法汇总</a><time datetime="2019-10-30T05:59:06.000Z" title="发表于 2019-10-30 13:59:06">2019-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Clark Lu</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><div class="js-pjax"></div><script async data-pjax src="/"></script></div></body></html>

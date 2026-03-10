@@ -647,4 +647,278 @@
         <tag>项目管理</tag>
       </tags>
   </entry>
+  <entry>
+    <title>我把 OpenClaw 从 0 跑通到可用，顺手踩完了几个关键坑</title>
+    <url>//p/d17fc333.html</url>
+    <content><![CDATA[<p>更新时间：2026-03-10</p>
+<p>这篇文章记录一次从零部署 OpenClaw 的真实过程，目标不是“装上 CLI 就算完”，而是把下面几条链路都跑通：</p>
+<ul>
+<li>OpenClaw CLI 可用</li>
+<li>Gateway 作为 macOS 后台服务长期运行</li>
+<li>能接入 Telegram Bot</li>
+<li>能调起 OpenClaw 自带的浏览器自动化</li>
+<li>默认模型最终切到 <code>openai-codex</code></li>
+</ul>
+<p>这套过程里最值钱的，不是安装命令本身，而是几个容易卡住的点：</p>
+<ul>
+<li>旧版 Node 会干扰安装器判断</li>
+<li><code>codex-cli</code> 和 OpenClaw 某些默认参数不兼容</li>
+<li>Telegram token 文件格式很容易因为多余字符出问题</li>
+<li><code>openai-codex</code> 的 OAuth 可能卡在一个很像“地区限制”的 403</li>
+<li>这个 403 的真正原因，未必是你真的在不支持地区</li>
+</ul>
+<h2 id="一、目标不是“装上”，而是“真正可用”"><a href="#一、目标不是“装上”，而是“真正可用”" class="headerlink" title="一、目标不是“装上”，而是“真正可用”"></a>一、目标不是“装上”，而是“真正可用”</h2><p>很多工具安装都容易停在第一步：命令能运行，但实际链路并不通。</p>
+<p>我这次的标准更严格一些，至少要满足这几个条件：</p>
+<ol>
+<li><code>openclaw</code> 命令能正常执行</li>
+<li>打开 dashboard 时 Gateway 是活的</li>
+<li>Telegram Bot 能收到消息并完成 pairing</li>
+<li>OpenClaw 能控制受管浏览器，而不是只会口头回答</li>
+<li>模型配置最终切换到更适合 tool calling 的 <code>openai-codex</code></li>
+</ol>
+<p>如果只完成第 1 步，其实离“可用”还差很远。</p>
+<h2 id="二、安装阶段第一个坑：机器里同时有两个-Node"><a href="#二、安装阶段第一个坑：机器里同时有两个-Node" class="headerlink" title="二、安装阶段第一个坑：机器里同时有两个 Node"></a>二、安装阶段第一个坑：机器里同时有两个 Node</h2><p>我这台机器上同时存在：</p>
+<ul>
+<li>一个较新的 Node 22</li>
+<li>一个旧的 Homebrew Node 18</li>
+</ul>
+<p>结果就是，OpenClaw 官方安装器优先识别到了旧 Node，导致安装路径和行为不稳定。</p>
+<p>这个坑的结论很直接：</p>
+<ul>
+<li>如果系统里有多个 Node 版本，不要盲信安装器自动判断</li>
+<li>先确认到底要让 OpenClaw 跑在哪个 Node 上</li>
+<li>必要时直接用你确认没问题的 Node 去全局安装</li>
+</ul>
+<p>我最后采用的是直接用 Node 22 执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g openclaw@latest</span><br></pre></td></tr></table></figure>
+
+<p>这比继续纠缠安装脚本的版本判断更省时间。</p>
+<h2 id="三、第二个坑：装完后-shell-可能开始报错"><a href="#三、第二个坑：装完后-shell-可能开始报错" class="headerlink" title="三、第二个坑：装完后 shell 可能开始报错"></a>三、第二个坑：装完后 shell 可能开始报错</h2><p>安装过程中，OpenClaw 会往 shell 配置里加补全相关内容。</p>
+<p>问题在于，如果补全文件当时还没生成，或者生成顺序不对，新的 shell 会直接报错。最常见的表现是：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">source ... openclaw.zsh: no such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>这个问题不算大，但很烦。修复思路也简单：</p>
+<ul>
+<li>不要无条件 <code>source</code></li>
+<li>改成“文件存在才加载”</li>
+</ul>
+<p>这属于典型的“安装器半完成状态”，不影响核心功能，但会影响日常使用体验。</p>
+<h2 id="四、第三个坑：OpenClaw-接-codex-cli-后，dashboard-会直接报错"><a href="#四、第三个坑：OpenClaw-接-codex-cli-后，dashboard-会直接报错" class="headerlink" title="四、第三个坑：OpenClaw 接 codex-cli 后，dashboard 会直接报错"></a>四、第三个坑：OpenClaw 接 <code>codex-cli</code> 后，dashboard 会直接报错</h2><p>我一开始让 OpenClaw 默认走本机的 <code>codex-cli</code>，这样做的好处是：</p>
+<ul>
+<li>可以直接复用本地已经可用的 Codex 环境</li>
+<li>不需要一开始就重新折腾 OAuth</li>
+</ul>
+<p>但很快就撞上了兼容问题。</p>
+<p>OpenClaw 在恢复会话时会调用类似这样的命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">codex <span class="built_in">exec</span> resume ... --color never ...</span><br></pre></td></tr></table></figure>
+
+<p>而我本机这版 <code>codex exec resume</code> 不接受 <code>--color</code>，于是 dashboard 和 Telegram 回复里都会报：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">unexpected argument &#x27;--color&#x27; found</span><br></pre></td></tr></table></figure>
+
+<p>这个错误很容易让人误判成：</p>
+<ul>
+<li>Telegram 配错了</li>
+<li>Dashboard 挂了</li>
+<li>Codex 自己坏了</li>
+</ul>
+<p>其实都不是。根因是：</p>
+<ul>
+<li>OpenClaw 默认拼出来的 <code>resumeArgs</code></li>
+<li>和当前这版 <code>codex-cli</code> 的参数能力不一致</li>
+</ul>
+<p>修法也很明确：</p>
+<ul>
+<li>覆盖 OpenClaw 的 <code>codex-cli.resumeArgs</code></li>
+<li>去掉 <code>--color</code></li>
+<li>只保留当前版本 <code>codex</code> 支持的参数</li>
+</ul>
+<p>这个修完之后，至少“会话继续报错”这条线就先恢复了。</p>
+<h2 id="五、第四个坑：Telegram-Bot-token-可能不是“看起来对”就真的对"><a href="#五、第四个坑：Telegram-Bot-token-可能不是“看起来对”就真的对" class="headerlink" title="五、第四个坑：Telegram Bot token 可能不是“看起来对”就真的对"></a>五、第四个坑：Telegram Bot token 可能不是“看起来对”就真的对</h2><p>Telegram 接入时，我遇到一个很典型的问题：</p>
+<ul>
+<li>token 文件里尾部多了异常字符</li>
+</ul>
+<p>这种问题肉眼不一定第一时间能意识到，因为你看上去像是一整串 token，但实际拿去调 Telegram API 就会出问题。</p>
+<p>我的结论是：</p>
+<ul>
+<li>Telegram token 一定要以纯文本、正常换行保存</li>
+<li>不要带多余字符</li>
+<li>最稳妥的验证方式不是“看起来像对”，而是直接调官方 <code>getMe</code></li>
+</ul>
+<p>验证命令类似：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl <span class="string">&quot;https://api.telegram.org/bot&lt;TOKEN&gt;/getMe&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>只有返回 <code>ok: true</code>，才算 token 真的可用。</p>
+<h2 id="六、第五个坑：Telegram-能聊天，不代表它会自动调用浏览器工具"><a href="#六、第五个坑：Telegram-能聊天，不代表它会自动调用浏览器工具" class="headerlink" title="六、第五个坑：Telegram 能聊天，不代表它会自动调用浏览器工具"></a>六、第五个坑：Telegram 能聊天，不代表它会自动调用浏览器工具</h2><p>我后面又给 OpenClaw 接上了浏览器自动化。</p>
+<p>这部分要先说清楚一个边界：</p>
+<ul>
+<li>OpenClaw 可以控制受管浏览器</li>
+<li>不等于它能直接接管你的整个桌面</li>
+</ul>
+<p>也就是说，它能做的是：</p>
+<ul>
+<li>打开网页</li>
+<li>截网页图</li>
+<li>点击页面元素</li>
+<li>输入内容</li>
+<li>抓页面结构</li>
+</ul>
+<p>但不是那种“直接操作你眼前整台电脑 GUI”的远控模式。</p>
+<p>浏览器自动化本身配通之后，我实际验证了：</p>
+<ul>
+<li><code>open</code></li>
+<li><code>snapshot</code></li>
+</ul>
+<p>都能成功执行。</p>
+<p>但 Telegram 里一开始还是经常只会回：</p>
+<ul>
+<li>我不能打开图形浏览器</li>
+<li>我不能截图</li>
+</ul>
+<p>这时候最容易误判成：</p>
+<ul>
+<li>macOS 权限没开</li>
+<li>浏览器自动化根本没成功</li>
+</ul>
+<p>其实更接近真实的问题是：</p>
+<ol>
+<li>当时默认模型还是 <code>codex-cli</code></li>
+<li>Telegram 会话没有被明确允许使用 <code>browser</code> 工具</li>
+</ol>
+<p>所以这里的关键不是再去折腾系统权限，而是：</p>
+<ul>
+<li>给 Telegram 直连用户单独放开 <code>browser</code></li>
+<li>给它一个明确的 system prompt，要求网页任务优先调用 browser tool</li>
+</ul>
+<p>换句话说，工具装好了，不等于 agent 一定会用。</p>
+<h2 id="七、为什么我最后还是从-codex-cli-切到了-openai-codex"><a href="#七、为什么我最后还是从-codex-cli-切到了-openai-codex" class="headerlink" title="七、为什么我最后还是从 codex-cli 切到了 openai-codex"></a>七、为什么我最后还是从 <code>codex-cli</code> 切到了 <code>openai-codex</code></h2><p>这一步是整个部署里最重要的结构性调整。</p>
+<p>原因很简单：</p>
+<ul>
+<li><code>codex-cli</code> 更适合代码、终端、文件任务</li>
+<li>但在 OpenClaw 这套架构里，它不是最适合承接原生 tools 的那条路</li>
+</ul>
+<p>如果你的目标是：</p>
+<ul>
+<li>Telegram 发一句话</li>
+<li>OpenClaw 真去调用 browser</li>
+<li>再把结果返回</li>
+</ul>
+<p>那最终还是更适合切到 <code>openai-codex</code> 这种 provider 路线。</p>
+<p>我最开始也以为登录一下就完了，结果没那么简单。</p>
+<h2 id="八、最难定位的坑：OAuth-看起来成功了，但最后还是-403"><a href="#八、最难定位的坑：OAuth-看起来成功了，但最后还是-403" class="headerlink" title="八、最难定位的坑：OAuth 看起来成功了，但最后还是 403"></a>八、最难定位的坑：OAuth 看起来成功了，但最后还是 403</h2><p>切换 <code>openai-codex</code> 时，浏览器会先跳到 OpenAI 登录页。</p>
+<p>前两次我在浏览器里都看到了非常像“已经成功”的提示：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">Authentication successful. Return to your terminal to continue.</span><br></pre></td></tr></table></figure>
+
+<p>但终端最后却失败，报的是：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">code-&gt;token failed: 403</span><br><span class="line">unsupported_country_region_territory</span><br></pre></td></tr></table></figure>
+
+<p>这个错误非常迷惑，因为它会让人第一反应觉得：</p>
+<ul>
+<li>是地区限制</li>
+<li>是账号不支持</li>
+<li>是代理不稳定</li>
+</ul>
+<p>这些猜测并不完全错，但也不够精确。</p>
+<p>真正要分清的是：</p>
+<ol>
+<li>浏览器登录成功</li>
+<li>本地回调成功</li>
+<li>失败发生在 OAuth 的 <code>authorization code -&gt; access token</code> 交换</li>
+</ol>
+<p>也就是说，卡住的并不是浏览器那一步，而是 Node.js 进程发出的那一步请求。</p>
+<h2 id="九、这次-403-的真正根因：浏览器和-Node-js-不一定走同一条代理链路"><a href="#九、这次-403-的真正根因：浏览器和-Node-js-不一定走同一条代理链路" class="headerlink" title="九、这次 403 的真正根因：浏览器和 Node.js 不一定走同一条代理链路"></a>九、这次 403 的真正根因：浏览器和 Node.js 不一定走同一条代理链路</h2><p>这是这次踩坑里最有价值的经验。</p>
+<p>我机器上明明已经有代理环境变量，比如：</p>
+<ul>
+<li><code>http_proxy</code></li>
+<li><code>https_proxy</code></li>
+</ul>
+<p>而且浏览器登录页也确实能正常打开。</p>
+<p>但问题在于：</p>
+<ul>
+<li>浏览器能走代理，不代表 Node.js 的 <code>fetch()</code> 就一定按你想象的方式走代理</li>
+</ul>
+<p>最后证明有效的修复方法是：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">NODE_USE_ENV_PROXY=1 openclaw models auth login --provider openai-codex --set-default</span><br></pre></td></tr></table></figure>
+
+<p>加上这行之后，OAuth 第三次终于成功了。</p>
+<p>这说明前面的 403，至少在我的场景里，主因不是“真的身处不支持地区”，而更像是：</p>
+<ul>
+<li>Node.js 发往 OpenAI token endpoint 的请求</li>
+<li>没有可靠走到和浏览器同一条翻墙链路</li>
+</ul>
+<p>所以这次的结论很明确：</p>
+<ul>
+<li>浏览器成功，不等于 OAuth 真正成功</li>
+<li>403 的关键点不在网页登录页，而在 token 交换</li>
+<li>如果你依赖环境代理，<code>NODE_USE_ENV_PROXY=1</code> 值得优先排查</li>
+</ul>
+<h2 id="十、最终状态：哪些东西算真正跑通了"><a href="#十、最终状态：哪些东西算真正跑通了" class="headerlink" title="十、最终状态：哪些东西算真正跑通了"></a>十、最终状态：哪些东西算真正跑通了</h2><p>到最后，这套环境的可用状态可以归纳成几条：</p>
+<ul>
+<li>OpenClaw CLI 可运行</li>
+<li>Gateway 作为 macOS 后台服务正常运行</li>
+<li>Telegram Bot 可接入并完成 pairing</li>
+<li>受管浏览器可打开页面并获取页面结构</li>
+<li>默认模型切换到了 <code>openai-codex</code></li>
+</ul>
+<p>但也要诚实说明边界：</p>
+<ul>
+<li>它能操作受管浏览器，不等于能直接远控整台电脑</li>
+<li>它能处理网页截图，不等于能主动抓你当前桌面</li>
+<li>某些代理行为如果不固化到后台服务环境里，后续重启后仍可能不稳定</li>
+</ul>
+<h2 id="十一、如果你也要照着做，我建议优先记住这几条"><a href="#十一、如果你也要照着做，我建议优先记住这几条" class="headerlink" title="十一、如果你也要照着做，我建议优先记住这几条"></a>十一、如果你也要照着做，我建议优先记住这几条</h2><h3 id="1-先确认到底是哪一个-Node-在生效"><a href="#1-先确认到底是哪一个-Node-在生效" class="headerlink" title="1. 先确认到底是哪一个 Node 在生效"></a>1. 先确认到底是哪一个 Node 在生效</h3><p>如果系统里同时有多个 Node，安装器很容易判断错。</p>
+<h3 id="2-codex-cli-能跑，不代表和-OpenClaw-默认参数完全兼容"><a href="#2-codex-cli-能跑，不代表和-OpenClaw-默认参数完全兼容" class="headerlink" title="2. codex-cli 能跑，不代表和 OpenClaw 默认参数完全兼容"></a>2. <code>codex-cli</code> 能跑，不代表和 OpenClaw 默认参数完全兼容</h3><p>遇到 <code>--color</code> 这种错误，优先去看 OpenClaw 给 CLI backend 拼了什么参数。</p>
+<h3 id="3-Telegram-token-一定用官方接口验证"><a href="#3-Telegram-token-一定用官方接口验证" class="headerlink" title="3. Telegram token 一定用官方接口验证"></a>3. Telegram token 一定用官方接口验证</h3><p>不要靠肉眼判断。</p>
+<h3 id="4-浏览器工具能用，不代表-Telegram-会自动调用"><a href="#4-浏览器工具能用，不代表-Telegram-会自动调用" class="headerlink" title="4. 浏览器工具能用，不代表 Telegram 会自动调用"></a>4. 浏览器工具能用，不代表 Telegram 会自动调用</h3><p>工具权限、用户级配置和提示词都可能影响结果。</p>
+<h3 id="5-OAuth-的-403-不要只盯“地区”"><a href="#5-OAuth-的-403-不要只盯“地区”" class="headerlink" title="5. OAuth 的 403 不要只盯“地区”"></a>5. OAuth 的 403 不要只盯“地区”</h3><p>要把浏览器登录和 Node.js token 交换分开看。</p>
+<h3 id="6-代理变量存在，不代表-Node-js-一定会按预期使用"><a href="#6-代理变量存在，不代表-Node-js-一定会按预期使用" class="headerlink" title="6. 代理变量存在，不代表 Node.js 一定会按预期使用"></a>6. 代理变量存在，不代表 Node.js 一定会按预期使用</h3><p><code>NODE_USE_ENV_PROXY=1</code> 是这次最关键的修复点。</p>
+<h2 id="十二、最后的建议"><a href="#十二、最后的建议" class="headerlink" title="十二、最后的建议"></a>十二、最后的建议</h2><p>如果你只是想体验 OpenClaw，装上 CLI 就够了。</p>
+<p>但如果你想把它真的接进自己的工作流，比如：</p>
+<ul>
+<li>Telegram 消息入口</li>
+<li>浏览器自动化</li>
+<li>长期后台运行</li>
+<li>OpenAI Codex provider</li>
+</ul>
+<p>那就不要把“安装成功”理解成“部署成功”。</p>
+<p>真正难的部分，几乎都在安装之后：</p>
+<ul>
+<li>参数兼容</li>
+<li>代理链路</li>
+<li>token 文件格式</li>
+<li>后台服务环境</li>
+<li>tool calling 行为</li>
+</ul>
+<p>这几块处理好了，OpenClaw 才算从“能启动”进入“能用”。</p>
+<h2 id="附：文中提到的公开命令示例"><a href="#附：文中提到的公开命令示例" class="headerlink" title="附：文中提到的公开命令示例"></a>附：文中提到的公开命令示例</h2><p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -g openclaw@latest</span><br></pre></td></tr></table></figure>
+
+<p>查看模型状态：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw models status --plain</span><br></pre></td></tr></table></figure>
+
+<p>受管浏览器验证：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">openclaw browser open https://example.com --browser-profile webauto</span><br><span class="line">openclaw browser snapshot --browser-profile webauto</span><br></pre></td></tr></table></figure>
+
+<p>Telegram token 验证：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl <span class="string">&quot;https://api.telegram.org/bot&lt;TOKEN&gt;/getMe&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>重新执行 OpenAI Codex OAuth：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">NODE_USE_ENV_PROXY=1 openclaw models auth login --provider openai-codex --set-default</span><br></pre></td></tr></table></figure>
+
+<p>如果后续我要继续整理，我会再拆两篇：</p>
+<ul>
+<li>一篇写“纯安装步骤版”</li>
+<li>一篇写“故障排查版”</li>
+</ul>
+]]></content>
+      <categories>
+        <category>AI实践</category>
+      </categories>
+      <tags>
+        <tag>OpenClaw</tag>
+        <tag>Codex</tag>
+        <tag>Telegram</tag>
+        <tag>浏览器自动化</tag>
+        <tag>故障排查</tag>
+      </tags>
+  </entry>
 </search>
