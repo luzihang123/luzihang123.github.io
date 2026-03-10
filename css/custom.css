@@ -4,6 +4,36 @@
   gap: 24px;
 }
 
+#recent-posts .recent-post-item {
+  min-height: 14.5em;
+}
+
+#recent-posts .recent-post-item .post_cover {
+  width: 38%;
+}
+
+#recent-posts .recent-post-item > .recent-post-info {
+  width: 62%;
+  padding: 0 28px;
+}
+
+#recent-posts .recent-post-item .post_cover .post-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  #recent-posts .recent-post-item .post_cover,
+  #recent-posts .recent-post-item > .recent-post-info {
+    width: 100%;
+  }
+
+  #recent-posts .recent-post-item > .recent-post-info {
+    padding: 18px 18px 26px;
+  }
+}
+
 .shuoshuo-page__intro {
   padding: 18px 20px;
   border: 1px solid var(--card-border);
