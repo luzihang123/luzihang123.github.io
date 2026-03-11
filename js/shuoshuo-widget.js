@@ -27,7 +27,7 @@
             <div class="shuoshuo-widget__summary">${item.summary}</div>
           </div>
         `).join('')}
-        <a class="shuoshuo-widget__more" href="${withRoot('/shuoshuo/')}">进入说说页 →</a>
+        <a class="shuoshuo-widget__more" href="${withRoot('/s/')}">进入说说页 →</a>
       </div>
     `
 
