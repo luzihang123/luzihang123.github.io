@@ -36,8 +36,7 @@ body {
 .article-title,
 #article-container h1,
 #article-container h2,
-#article-container h3,
-.shuoshuo-card__name {
+#article-container h3 {
   font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Noto Serif SC", Georgia, serif;
   letter-spacing: 0.01em;
 }
@@ -226,32 +225,19 @@ body {
 .shuoshuo-card__header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
-.shuoshuo-card__avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.shuoshuo-card__author {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.shuoshuo-card__time {
   color: var(--secondtext);
-  font-size: 0.92rem;
-}
-
-.shuoshuo-card__name {
-  color: var(--font-color);
-  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
 }
 
 .shuoshuo-card__body {
   color: var(--font-color);
+  font-size: 1rem;
   line-height: 1.9;
   white-space: pre-wrap;
 }
@@ -346,6 +332,6 @@ body {
   }
 
   .shuoshuo-card__header {
-    align-items: flex-start;
+    justify-content: flex-start;
   }
 }
