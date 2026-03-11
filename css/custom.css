@@ -210,64 +210,64 @@ body {
 .shuoshuo-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 0;
 }
 
 .shuoshuo-card,
 .shuoshuo-empty {
-  padding: 22px;
-  border: 1px solid var(--card-border);
-  border-radius: 20px;
-  background: var(--card-bg);
-  box-shadow: var(--card-box-shadow);
+  padding: 22px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(119, 95, 61, 0.12);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-.shuoshuo-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 10px;
+[data-theme='dark'] .shuoshuo-card,
+[data-theme='dark'] .shuoshuo-empty {
+  border-bottom-color: rgba(197, 177, 142, 0.12);
 }
 
 .shuoshuo-card__time {
   color: var(--secondtext);
   font-size: 0.88rem;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .shuoshuo-card__body {
   color: var(--font-color);
-  font-size: 1rem;
-  line-height: 1.9;
+  font-size: 1.02rem;
+  line-height: 1.95;
   white-space: pre-wrap;
 }
 
 .shuoshuo-card__footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 16px;
+  gap: 14px;
+  margin-top: 14px;
   flex-wrap: wrap;
 }
 
 .shuoshuo-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .shuoshuo-card__tags span {
-  padding: 4px 10px;
+  padding: 2px 8px;
   border-radius: 999px;
-  background: var(--theme-color-op);
+  background: rgba(66, 184, 131, 0.1);
   color: var(--theme-color);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .shuoshuo-card__link {
   color: var(--theme-color);
-  font-weight: 600;
+  font-weight: 500;
+  margin-left: auto;
 }
 
 .card-shuoshuo-widget .item-content {
@@ -327,11 +327,15 @@ body {
   .shuoshuo-card,
   .shuoshuo-empty,
   .shuoshuo-page__intro {
-    padding: 18px;
-    border-radius: 16px;
+    padding: 18px 0;
+    border-radius: 0;
   }
 
-  .shuoshuo-card__header {
-    justify-content: flex-start;
+  .shuoshuo-card__body {
+    font-size: 1rem;
+  }
+
+  .shuoshuo-card__link {
+    margin-left: 0;
   }
 }
