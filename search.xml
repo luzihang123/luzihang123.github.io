@@ -1023,4 +1023,24 @@
         <tag>内容生产</tag>
       </tags>
   </entry>
+  <entry>
+    <title>想做一个自我介绍版 Podcast</title>
+    <url>//p/intro-podcast-note.html</url>
+    <content><![CDATA[<p>最近突然冒出个想法：想给博客单独搞一个 Podcast 展示页。</p>
+<p>第一期我都想好了，先不整太复杂，直接拿“自我介绍”开场。</p>
+<p>把我是谁、平时在折腾什么、为什么一直还在写博客，先用播客的方式讲一遍，感觉会比纯文字更有意思一点。</p>
+<p>甚至都不一定非得我自己先开录，完全可以把博客里的自我介绍、文章、项目经历丢给 Google NotebookLM 这类工具，先做一个 AI 协作版的自我介绍 Podcast 试试看。</p>
+<p>如果这个玩法能跑通，那博客以后就不只是能看，可能也能听了。</p>
+<p>先发条说说，给自己挖个坑。</p>
+]]></content>
+      <categories>
+        <category>shuoshuo</category>
+      </categories>
+      <tags>
+        <tag>Podcast</tag>
+        <tag>自我介绍</tag>
+        <tag>Google NotebookLM</tag>
+        <tag>博客规划</tag>
+      </tags>
+  </entry>
 </search>

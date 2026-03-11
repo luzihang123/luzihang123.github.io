@@ -6,7 +6,7 @@
   <link href="https://clarklu.com/atom.xml" rel="self"/>
   
   <link href="https://clarklu.com/"/>
-  <updated>2026-03-11T01:28:18.078Z</updated>
+  <updated>2026-03-11T07:07:13.889Z</updated>
   <id>https://clarklu.com/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>想做一个自我介绍版 Podcast</title>
+    <link href="https://clarklu.com/p/intro-podcast-note.html"/>
+    <id>https://clarklu.com/p/intro-podcast-note.html</id>
+    <published>2026-03-11T02:30:00.000Z</published>
+    <updated>2026-03-11T07:07:13.889Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近突然冒出个想法：想给博客单独搞一个 Podcast 展示页。</p><p>第一期我都想好了，先不整太复杂，直接拿“自我介绍”开场。</p><p>把我是谁、平时在折腾什么、为什么一直还在写博客，先用播客的方式讲一遍，感觉会比纯文字更有意思一点。</p><p>甚至都不一定非得我自己先开录，完全可以把博客里的自我介绍、文章、项目经历丢给 Google NotebookLM 这类工具，先做一个 AI 协作版的自我介绍 Podcast 试试看。</p><p>如果这个玩法能跑通，那博客以后就不只是能看，可能也能听了。</p><p>先发条说说，给自己挖个坑。</p>]]></content>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近突然冒出个想法：想给博客单独搞一个 Podcast</summary>
+        
+      
+    
+    
+    
+    <category term="shuoshuo" scheme="https://clarklu.com/categories/shuoshuo/"/>
+    
+    
+    <category term="Podcast" scheme="https://clarklu.com/tags/Podcast/"/>
+    
+    <category term="自我介绍" scheme="https://clarklu.com/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/"/>
+    
+    <category term="Google NotebookLM" scheme="https://clarklu.com/tags/Google-NotebookLM/"/>
+    
+    <category term="博客规划" scheme="https://clarklu.com/tags/%E5%8D%9A%E5%AE%A2%E8%A7%84%E5%88%92/"/>
+    
+  </entry>
   
   <entry>
     <title>AI 时代，为什么我还是想写博客</title>
