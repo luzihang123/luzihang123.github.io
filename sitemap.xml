@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://clarklu.com/p/ai-anxiety-dont-push-too-hard.html</loc>
+    
+    <lastmod>2026-03-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://clarklu.com/p/intro-podcast-note.html</loc>
     
     <lastmod>2026-03-11</lastmod>
@@ -184,7 +193,7 @@
 
   <url>
     <loc>https://clarklu.com/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -192,161 +201,182 @@
   
   <url>
     <loc>https://clarklu.com/tags/GitHub-Pages/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E5%A4%9A%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/Cloudflare/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/DNS%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/SEO/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/OpenClaw/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/Codex/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/Telegram/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/Hexo/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E5%86%85%E5%AE%B9%E5%B7%A5%E4%BD%9C%E6%B5%81/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/ChatGPT-Plus/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/AI/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E7%8B%AC%E7%AB%8B%E7%AB%99/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E5%86%85%E5%AE%B9%E7%94%9F%E4%BA%A7/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/Podcast/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/Google-NotebookLM/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/tags/%E5%8D%9A%E5%AE%A2%E8%A7%84%E5%88%92/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/%E6%89%93%E5%B7%A5%E4%BA%BA/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/%E7%84%A6%E8%99%91/</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://clarklu.com/tags/%E8%81%8C%E5%9C%BA/</loc>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -355,28 +385,28 @@
   
   <url>
     <loc>https://clarklu.com/categories/%E3%80%8C%E7%AC%94%E8%AE%B0%E3%80%8D/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/categories/%E3%80%8C%E5%8E%9F%E5%88%9B%E5%88%86%E4%BA%AB%E3%80%8D/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/categories/AI%E5%AE%9E%E8%B7%B5/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://clarklu.com/categories/shuoshuo/</loc>
-    <lastmod>2026-03-11</lastmod>
+    <lastmod>2026-03-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
